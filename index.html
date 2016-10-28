@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .MainContent{
+            position: relative;
+            display: block;
+            background: #ffffff;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            width: 360px;
+            height: 600px;
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+        }
+        .HeaderContent{
+            position: relative;
+            display: block;
+            background: skyblue;
+
+            margin: 0 auto;
+            width: 360px;
+            height: 100px;
+            text-align: center;
+
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+        }
+        .HeaderContent .logo{
+            position: absolute;
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+
+        .MiddleContent{
+            position: relative;
+            display: block;
+            background: #ffffff;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 340px;
+            height: 300px;
+            text-align: center;
+            background: url('./public/resource/calendar.png');
+            background-size: contain;
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            transition: all 0.5s ease;
+        }
+        .MiddleContent:hover{
+             opacity: 0.5;
+        }
+        .HeaderContent a{
+            color: #ffffff;
+            font-weight: bold;
+            font-family: Arial;
+            font-size: 35px;
+        }
+        .FooterContent{
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .MemoContent{
+            position: relative;
+            float:left;
+            display: block;
+            background: #ffffff;
+            width: 165px;
+            height: 165px;
+            text-align: center;
+            background: url('./public/resource/memo.png');
+            background-size: contain;
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+        }
+        .MemoContent:hover{
+            opacity: 0.5;
+        }
+        .EventContent{
+            position: relative;
+            float:right;
+            display: block;
+            background: #ffffff;
+            width: 165px;
+            height: 165px;
+            text-align: center;
+            background: url('./public/resource/event.png');
+            background-size: contain;
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+        }
+        .EventContent:hover{
+            opacity: 0.5;
+        }
+    </style>
+    <title>Family Hub</title>
+</head>
+<body>
+    <div class="MainContent">
+        <div class = "HeaderContent">
+            <div class = "logo">
+                <a> Family Hub </a>
+            </div>
+        </div>
+        <div class = "MiddleContent">
+
+        </div>
+        <div class = "FooterContent">
+            <div class = "MemoContent">
+
+            </div>
+            <div class = "EventContent">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
