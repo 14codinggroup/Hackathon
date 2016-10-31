@@ -2,59 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="basic_ui.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <style>
         html, body{
             width: 98%;
             height: 98%;
-            padding: 0;
             background-color: #ffffff;
         }
         .MainContent{
             position: relative;
             display: block;
             background: #ffffff;
-            margin: 1%;
-            height: 98%;
-            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
         }
         .HeaderContent{
             position: relative;
             display: block;
-            background: skyblue;
-
-            margin: 0 auto;
+            background: #ffffff;
             height: 15%;
-            text-align: center;
-
-            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
         }
         .HeaderContent .logo{
-            position: absolute;
-            margin-top: 20px;
-            margin-left: 80px;
-        }
+            padding: 5%;
+            vertical-align: center;
+            text-align: center;
 
+        }
+        .LobbyContent {
+            height: 83%;
+            position: relative;
+            display: block;
+        }
         .MiddleContent{
             position: relative;
             display: block;
             background: #ffffff;
             margin: 3%;
             width: 94%;
-            height: 52%;
+            height: 50%;
             text-align: center;
             background: url('./public/resource/calendar.png');
-            background-size: contain;
-            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            background-repeat:no-repeat;
+            background-size:cover;
             transition: all 0.5s ease;
         }
         .MiddleContent:hover{
              opacity: 0.5;
         }
         .HeaderContent a{
-            color: #ffffff;
+            color: #000000;
             font-weight: bold;
-            font-family: Arial;
+            font-family: Calibri;
             font-size: 35px;
         }
         .FooterContent{
@@ -68,12 +68,11 @@
             display: block;
             background: #ffffff;
             margin: 0 1%;
-            width: 48%;
-            height: 24vh;
+            width: 46%;
             text-align: center;
             background: url('./public/resource/memo.png');
-            background-size: contain;
-            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            background-repeat:no-repeat;
+            background-size:cover;
         }
         .MemoContent:hover{
             opacity: 0.5;
@@ -85,36 +84,49 @@
             background: #ffffff;
             margin: 0 1%;
             width: 46%;
-            height: 24vh;
             text-align: center;
             background: url('./public/resource/event.png');
-            background-size: contain;
-            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            background-repeat:no-repeat;
+            background-size:cover;
         }
         .EventContent:hover{
             opacity: 0.5;
+        }
+        .MemoCanvas{
+            margin: 1%;
+            display: none;
+            width: auto;
         }
     </style>
     <title>Family Hub</title>
 </head>
 <body>
     <div class="MainContent">
-        <div class = "HeaderContent">
-            <div class = "logo">
+        <div class="HeaderContent">
+            <div class="logo">
                 <a> Family Hub </a>
             </div>
         </div>
-        <div class = "MiddleContent">
+        <div class="LobbyContent" id="LobbyContent">
 
-        </div>
-        <div class = "FooterContent">
-            <div class = "MemoContent">
+            <div class="MiddleContent"id ="MiddleContent">
 
             </div>
-            <div class = "EventContent">
+            <div class = "FooterContent" id ="FooterContent">
+                <div class="MemoContent" id = "MemoContent" onclick="onclick_memo()">
 
+                </div>
+                <div class="EventContent" id = "EventContent">
+
+                </div>
             </div>
+            <canvas class="MemoCanvas" id="MemoCanvas"  style="border:1px solid #000000;">
+
+            </canvas>
         </div>
     </div>
+    <script>
+        draw(); // ui resize
+    </script>
 </body>
 </html>
