@@ -4,6 +4,7 @@ var express = require('express'),
     io = require('socket.io').listen(server);
 
 app.use('/public', express.static('public'));
+app.use('/js', express.static('js'));
 server.listen(3000);
 
 app.get('/', function(req, res){
