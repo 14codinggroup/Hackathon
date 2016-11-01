@@ -6,6 +6,8 @@ function onclick_memo(){
     document.getElementById('MiddleContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
     document.getElementById('MemoCanvas').style.display = 'block';
+    document.getElementById('MemoBtnContainer').style.display = 'block';
+
     resize_canvas();
 }
 
@@ -13,12 +15,20 @@ function resize_canvas() {
     canvas = document.getElementById("MemoCanvas");
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = document.getElementById('LobbyContent').clientWidth * 980 / 1000;
-    ctx.canvas.height = document.getElementById('LobbyContent').clientHeight * 980 / 1000;
+    ctx.canvas.height = document.getElementById('LobbyContent').clientHeight * 1000 / 1000;
 
     //start loop
     init();
 }
 
+function AddMemo() {
+    var inputName = prompt('메모 제목', '');
+    //alert(inputName);
+    var inputContent = prompt('메모 내용', '');
+    //alert(inputContent);
+
+
+}
 
 function draw() {
     // ui resize
@@ -33,25 +43,23 @@ var fps = 10;
 var position = {};
 
 function init(){
-    alert("A");
-    setInterval(gameLoop, 1000/fps);
+    setInterval(Loop, 1000/fps);
 }
 
-function gameLoop(){
+function Loop(){
     update();
     display();
 }
 
 function update(){
-    //Set Rectangle Position(Random Positioning In Canvas)
-    position.x = Math.floor(Math.random() * (canvas.width - 20));  //0~480
-    position.y = Math.floor(Math.random() * (canvas.height - 20)); //0~380
-
     //Set Random Coloring
-    ctx.fillStyle = 'rgb(' + Math.floor(Math.random() * 255) + ','
-        + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+    ctx.fillStyle = 'rgba(' + 255 + ','
+        + 102 + ',' + 153 + ',' + 0.1 + ')';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function display(){
-    ctx.fillRect(position.x, position.y, 20, 20);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
