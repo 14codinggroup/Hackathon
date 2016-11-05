@@ -38,11 +38,10 @@ function draw() {
     document.getElementById('EventContent').style.height = w + "px";
 }
 
-
 var fps = 10;
 var position = {};
 
-function init(){
+function init() {
     canvas.addEventListener("mousedown", mouseDownListener, false);
     setInterval(Loop, 1000/fps);
 }
@@ -97,13 +96,28 @@ function update(){
 
 function display(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     var index_memo;
     for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
         ctx.fillStyle = memo_array[index_memo].color;
         ctx.fillRect(memo_array[index_memo].x, memo_array[index_memo].y, 100, 100);
+
+        ctx.fillStyle = 'rgba(0,0,0,1)';
+
+        var content_array = new Array();
+        var content_size =  memo_array[index_memo].my_content.length;
+        var count = 0;
+        do {
+            content_size = content_size - 10;
+            count++;
+        } while (content_size > 0);
+
+        for (var index_memo_size = 0; index_memo_size < count; index_memo_size++) {
+            ctx.fillText(memo_array[index_memo].my_content.substr(index_memo_size,10),
+                memo_array[index_memo].x + 10, memo_array[index_memo].y + 40 + 20 * index_memo_size);
+        }
+
     }
 }
 
@@ -116,11 +130,12 @@ function Memo (my_content, mx, my, mwidth, mheight, color) {
 
     this.color = color;
 }
+
 Memo.prototype.getMemo = function() {
   return this.my_content;
 };
+
 Memo.prototype.HitTest = function(cx, cy) {
     return ((cx > this.x - this.width) && (cx < this.x + this.width)
         && (cy > this.y - this.height) && (cy < this.y + this.height));
-
 }
