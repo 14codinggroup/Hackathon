@@ -1,5 +1,3 @@
-var canvas;
-var ctx;
 
 function onclick_memo(){
     //lobby ui --> memo ui
