@@ -123,7 +123,15 @@
             display: block;
             font-size: 16px;
         }
-
+        .EventList {
+            margin-left: 0;
+            display: none;
+        }
+        .EventList div {
+            margin-left: 0;
+            color: #ffffff;
+            background: #000000;
+        }
     </style>
     <title>Family Hub</title>
 </head>
@@ -143,17 +151,40 @@
                 <div class="MemoContent" id = "MemoContent" onclick="onclick_memo()">
 
                 </div>
-                <div class="EventContent" id = "EventContent">
+                <div class="EventContent" id = "EventContent"  onclick="onclick_event()">
 
                 </div>
             </div>
             <canvas class="MemoCanvas" id="MemoCanvas" >
 
             </canvas>
-            <div class='MemoBtnContainer' id="MemoBtnContainer">
+            <div class="MemoBtnContainer" id="MemoBtnContainer">
                 <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
                 <input class='but' id='but2' type='button' value='메모 삭제'>
             </div>
+
+            <div class="EventList" id="EventList">
+            </div>
+            <script>
+                function addDiv() {
+                    /*
+                    var objTo = document.getElementById("EventList");
+                    var divtest = document.createElement("div");
+                    divtest.innerHTML = "new div";
+                    objTo.style.display = "block";
+                    objTo.style.marginTop = "40px";
+                    objTo.appendChild(divtest);
+                    */
+                    var list = document.getElementById('EventList');
+                    var divtest = document.createElement("div");
+                    divtest.innerHTML = "new div";
+                    list.appendChild(divtest);
+                }
+                addDiv();
+                addDiv();
+                addDiv();
+
+            </script>
         </div>
     </div>
 
@@ -161,5 +192,6 @@
     <script>
         draw(); // ui resize
     </script>
+
 </body>
 </html>
