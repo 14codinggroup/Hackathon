@@ -127,12 +127,23 @@
         .EventList {
             margin-left: 0;
             display: none;
+            overflow-x:hidden;
         }
         .EventList div {
-            margin-left: 0;
-            color: #ffffff;
-            background: #000000;
+            margin: 0;
+            line-height: 5;
+            display: block;
+            color: #fff;
+            background: #4c4c4c;
+            font-family: sans-serif;
         }
+
+        .Events div{
+            margin: 0;
+            display: none;
+            overflow-x: hidden;
+        }
+
     </style>
     <title>Family Hub</title>
 </head>
@@ -164,9 +175,8 @@
                 <input class='but' id='but2' type='button' value='메모 삭제'>
             </div>
 
-            <div class="EventList" id="EventList">
-                <div>
-                </div>
+            <div class="EventList" id="EventList"  >
+                <div></div>
             </div>
 
         </div>
