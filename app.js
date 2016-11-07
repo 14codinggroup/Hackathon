@@ -12,6 +12,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/data', function(req, res){
-    res.send('Hello world');
+    var obj = { hello: 'world', data: [1,2,3] };
+    res.send(JSON.stringify(obj));
 });
 

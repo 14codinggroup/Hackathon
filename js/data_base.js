@@ -1,8 +1,9 @@
 $(function () {
     $('.logo').click(function(){
-        alert("Hi");
-        $.get('http://localhost:3000/data', {}, function(data){
-            console.log(data)
+        $.get('http://localhost:3000/data', {}, function(obj){
+            console.log(obj)
+            var base_json = JSON.parse(obj);
+            console.log(base_json.hello);
         });
     });
 });
