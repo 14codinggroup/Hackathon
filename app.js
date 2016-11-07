@@ -11,3 +11,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/data', function(req, res){
+    res.send('Hello world');
+});
+

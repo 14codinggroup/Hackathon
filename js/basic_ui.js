@@ -14,6 +14,6 @@ function onclick_event(){
     document.getElementById('MiddleContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
     document.getElementById('EventList').style.display = 'block';
-    alert("A");
+    //alert("A");
     event_init();
 }
