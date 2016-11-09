@@ -11,8 +11,22 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/data', function(req, res){
-    var obj = { hello: 'world', data: [1,2,3] };
-    res.send(JSON.stringify(obj));
+app.get('/data/memo', function(req, res){
+    var client_obj = req.query;
+    switch (client_obj.msg) {
+        case "REQUEST_MEMO_ALL":
+            var obj = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: ["a","b","c"] };
+            res.send(JSON.stringify(obj));
+            break;
+        case "REQUEST_MEMO_ADD":
+
+            break;
+        case "REQUEST_MEMO_REMOVE":
+
+            break;
+        default:
+            return
+            break;
+    }
 });
 
