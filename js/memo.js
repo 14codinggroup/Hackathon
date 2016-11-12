@@ -26,6 +26,12 @@ function AddMemo() {
         +color_B + ',' + 0.1 + ')';
 
     memo_array.push(new Memo(inputContent, mx, my, 100, 100, color));
+    var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ADD', data: inputContent };
+    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+        console.log(obj)
+    });
+
+
     //alert(memo_array[1].my_content);
     //alert(memo_array.length);
 }
