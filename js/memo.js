@@ -42,8 +42,30 @@ var fps = 10;
 var position = {};
 
 function init() {
+    LoadMemo();
     canvas.addEventListener("mousedown", mouseDownListener, false);
     setInterval(Loop, 1000/fps);
+}
+function LoadMemo() {
+    var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: "" };
+    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+        var memo_json = JSON.parse(obj);
+        console.log(memo_json.data);
+        for (var i = 0; i < memo_json.data.length; i++){
+            var my = parseInt(memo_array.length / 4) * 100 + 100;
+            var mx = (memo_array.length % 4) * 100;
+
+            var color_R = parseInt(Math.random() * 255) + 1;
+            var color_G = parseInt(Math.random() * 255) + 1;
+            var color_B = parseInt(Math.random() * 255) + 1;
+
+            var color = 'rgba(' + color_R + ',' + color_G + ','
+                +color_B + ',' + 0.1 + ')';
+
+            memo_array.push(new Memo(memo_json.data[i], mx, my, 100, 100, color));
+        }
+
+    });
 }
 
 var dragging;
