@@ -36,13 +36,6 @@ function AddMemo() {
     //alert(memo_array.length);
 }
 
-function draw() {
-    // ui resize
-    var w = document.getElementById('MemoContent').clientWidth;
-    document.getElementById('MemoContent').style.height = w + "px";
-    w = document.getElementById('EventContent').clientWidth;
-    document.getElementById('EventContent').style.height = w + "px";
-}
 
 var fps = 10;
 var position = {};

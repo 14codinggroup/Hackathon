@@ -24,8 +24,15 @@ var memoSchema = mongoose.Schema({
     data: String,
     created: {type: Date, default: Date.now}
 });
-var Memo = mongoose.model('Message', memoSchema);
 
+var calendarSchema = mongoose.Schema({
+    id: String,
+    data: String,
+    created: {type: Date, default: Date.now}
+});
+
+var Memo = mongoose.model('Message', memoSchema);
+var Calendar = mongoose.model('Message', calendarSchema);
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
