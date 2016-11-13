@@ -31,8 +31,8 @@ var calendarSchema = mongoose.Schema({
     created: {type: Date, default: Date.now}
 });
 
-var Memo = mongoose.model('Msg_memo', memoSchema);
-var Calendar = mongoose.model('Msg_calendar', calendarSchema);
+var Memo = mongoose.model('Memo_msg', memoSchema);
+var Calendar = mongoose.model('Calendar_msg', calendarSchema);
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
@@ -59,8 +59,13 @@ app.get('/data/memo', function(req, res){
                 console.log("save memo");
             });
             break;
-        case "REQUEST_MEMO_REMOVE":
+        case "REQUEST_MEMO_DEL":
+            //var newMsg = new Memo({data: client_obj.data});
 
+            Memo.remove({data: client_obj.data}, function (err) {
+                if(err) console.log(err);
+                console.log("del memo");
+            });
             break;
         default:
             return

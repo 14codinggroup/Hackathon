@@ -15,7 +15,7 @@ var memo_array = new Array();
 
 function AddMemo() {
     var inputContent = prompt('메모 내용', '');
-    if (inputContent == "") return;
+    if (inputContent == '') return;
     var my = parseInt(memo_array.length / 4) * 100 + 100;
     var mx = (memo_array.length % 4) * 100;
 
@@ -31,12 +31,22 @@ function AddMemo() {
     $.get('http://localhost:3000/data/memo', client_json, function(obj){
         console.log(obj)
     });
-
-
-    //alert(memo_array[1].my_content);
-    //alert(memo_array.length);
 }
 
+var isDel = false;
+function DelMemo() {
+    if (isDel == false){
+        alert("삭제할 메모를 선택해주세요");
+        deleting = false;
+        document.getElementById('but2').value = "삭제 취소";
+        isDel = true;
+    }
+    else {
+        alert("삭제를 취소 하였습니다.")
+        document.getElementById('but2').value = "메모 삭제";
+        isDel = false;
+    }
+}
 
 var fps = 10;
 var position = {};
@@ -71,22 +81,47 @@ function LoadMemo() {
 var dragging;
 var dragIndex;
 
+var deleting;
+var delIndex;
+
 function mouseDownListener(evt) {
     var blank = canvas.getBoundingClientRect();
-    var canvas_x = (evt.clientX - blank.left) * (canvas.width/blank.width);
-    var canvas_y = (evt.clientY - blank.top) * (canvas.height/blank.height);
-
+    var canvas_x = (evt.clientX - blank.left) * (canvas.width / blank.width);
+    var canvas_y = (evt.clientY - blank.top) * (canvas.height / blank.height);
     var index_memo;
-    //alert("X=" + canvas_x + "Y=" + canvas_y);
-    for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
-        if(memo_array[index_memo].HitTest(canvas_x, canvas_y)){
-            dragging = true;
-            dragIndex = index_memo;
+
+    if (isDel == false) {
+        for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
+            if (memo_array[index_memo].HitTest(canvas_x, canvas_y)) {
+                dragging = true;
+                dragIndex = index_memo;
+            }
         }
-    }
-    if (dragging) {
-        window.addEventListener("mousemove", mouseMoveListener, false);
-        window.addEventListener("mouseup", mouseUpListener, false);
+        if (dragging) {
+            window.addEventListener("mousemove", mouseMoveListener, false);
+            window.addEventListener("mouseup", mouseUpListener, false);
+        }
+    } else {
+        for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
+            if (memo_array[index_memo].HitTest(canvas_x, canvas_y)) {
+                delIndex = index_memo;
+                deleting = true;
+            }
+        }
+        if (deleting == true){
+            alert(delIndex + "번 메모를 삭제하시겠습니까?")
+            var del_data = memo_array[delIndex].my_content
+            console.log(del_data);
+            var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_DEL', data: del_data };
+            $.get('http://localhost:3000/data/memo', client_json, function(obj){
+                console.log(obj)
+            });
+            memo_array.splice(delIndex,1);
+            deleting = false;
+            document.getElementById('but2').value = "메모 삭제";
+            isDel = false;
+        }
+
     }
     //canvas.removeEventListener("mousedown", mouseDownListener, false);
 }
@@ -158,6 +193,6 @@ Memo.prototype.getMemo = function() {
 };
 
 Memo.prototype.HitTest = function(cx, cy) {
-    return ((cx > this.x - this.width) && (cx < this.x + this.width)
-        && (cy > this.y - this.height) && (cy < this.y + this.height));
+    return ((cx > this.x) && (cx < this.x + this.width)
+        && (cy > this.y) && (cy < this.y + this.height));
 }
