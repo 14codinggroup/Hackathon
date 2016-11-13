@@ -1,9 +1,9 @@
 {
   "name": "hackathon",
   "version": "1.0.0",
-  "dependencies":
-  {
+  "dependencies": {
     "express": "~4.13.1",
+    "mongoose": "^4.6.6",
     "socket.io": "^1.4.8"
   }
 }

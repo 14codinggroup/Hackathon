@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/data_base.js"></script>
     <script type="text/javascript" src="js/basic_ui.js"></script>
     <script type="text/javascript" src="js/memo.js"></script>
     <script type="text/javascript" src="js/event.js"></script>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
     <style>
@@ -30,7 +34,6 @@
             padding: 5%;
             vertical-align: center;
             text-align: center;
-
         }
         .LobbyContent {
             height: 83%;
@@ -43,9 +46,9 @@
             background: #ffffff;
             margin: 3%;
             width: 94%;
-            height: 50%;
+            height: 60%;
             text-align: center;
-            background: url('./public/resource/calendar.png');
+
             box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
             background-repeat:no-repeat;
             background-size:cover;
@@ -64,38 +67,67 @@
             margin-top: 10px;
             margin-left: 10px;
             margin-right: 10px;
+            height: 40%
         }
         .MemoContent{
             position: relative;
-            float:left;
             display: block;
             background: #ffffff;
-            margin: 0 1%;
-            width: 46%;
+            margin: 4% 1%;
+            width: 98%;
+            height: 48%;
             text-align: center;
-            background: url('./public/resource/memo.png');
+
             box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
-            background-repeat:no-repeat;
-            background-size:cover;
         }
         .MemoContent:hover{
             opacity: 0.5;
         }
+        .MemoPicture{
+            float: left;
+            height: 100%;
+            background: url('./public/resource/memo.png');
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        .MemoContent .MemoText{
+            float: right;
+            text-align: center;
+        }
+        .MemoContent .MemoText a{
+            font-weight: bold;
+            font-family: Calibri;
+            font-size: 35px;
+        }
         .EventContent{
             position: relative;
-            float:right;
             display: block;
             background: #ffffff;
-            margin: 0 1%;
-            width: 46%;
+            margin: 4% 1%;
+            width: 98%;
+            height: 48%;
             text-align: center;
-            background: url('./public/resource/event.png');
+
             box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
-            background-repeat:no-repeat;
-            background-size:cover;
         }
         .EventContent:hover{
             opacity: 0.5;
+        }
+        .EventPicture{
+            float: left;
+            height: 100%;
+            background: url('./public/resource/event.png');
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        .EventContent .EventText{
+            float: right;
+            text-align: center;
+        }
+        .EventContent .EventText a{
+            font-weight: bold;
+            font-family: Calibri;
+            font-size: 35px;
         }
         .MemoCanvas{
             margin: 1%;
@@ -150,10 +182,18 @@
             </div>
             <div class = "FooterContent" id ="FooterContent">
                 <div class="MemoContent" id = "MemoContent" onclick="onclick_memo()">
-
+                    <div class="MemoPicture" id = "MemoPicture">
+                    </div>
+                    <div class="MemoText" id = "MemoText">
+                        <a> Memo </a>
+                    </div>
                 </div>
                 <div class="EventContent" id = "EventContent"  onclick="onclick_event()">
-
+                    <div class="EventPicture" id = "EventPicture">
+                    </div>
+                    <div class="EventText" id = "EventText">
+                        <a> 행사 </a>
+                    </div>
                 </div>
             </div>
             <canvas class="MemoCanvas" id="MemoCanvas" >
@@ -161,7 +201,7 @@
             </canvas>
             <div class="MemoBtnContainer" id="MemoBtnContainer">
                 <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
-                <input class='but' id='but2' type='button' value='메모 삭제'>
+                <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
             </div>
 
             <div class="EventList" id="EventList">
