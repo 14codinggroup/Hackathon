@@ -15,6 +15,7 @@ var memo_array = new Array();
 
 function AddMemo() {
     var inputContent = prompt('메모 내용', '');
+    if (inputContent == "") return;
     var my = parseInt(memo_array.length / 4) * 100 + 100;
     var mx = (memo_array.length % 4) * 100;
 

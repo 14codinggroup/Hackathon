@@ -31,8 +31,8 @@ var calendarSchema = mongoose.Schema({
     created: {type: Date, default: Date.now}
 });
 
-var Memo = mongoose.model('Message', memoSchema);
-var Calendar = mongoose.model('Message', calendarSchema);
+var Memo = mongoose.model('Msg_memo', memoSchema);
+var Calendar = mongoose.model('Msg_calendar', calendarSchema);
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
