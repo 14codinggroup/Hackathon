@@ -156,18 +156,50 @@
             font-size: 16px;
         }
         .EventList {
+            background: #333;
             margin-left: 0;
             display: none;
         }
         .EventList div {
             margin-left: 0;
             color: #ffffff;
-            background: #000;
+            background: #5e5e5e;
             line-height: 5;
         }
+
+        .EventList div:hover{
+            opacity: 0.7;
+        }
+
         .EventInfo {
             display: none;
         }
+
+        .EventInfo div{
+            line-height: 5;
+            font-size: 16px;
+            font-family: Raleway, sans-serif;
+        }
+
+        .EventInfo > .EventImage{
+            background-color : #ccc;
+        }
+
+        .EventInfo > .EventTitle{
+            font-size: 20px;
+            text-align: center;
+            margin:10px;
+            padding:20px
+            font-family: 'Lato', sans-serif;
+        }
+
+        .EventInfo > .EventDescription{
+            font-size: 16px;
+            font-family: Raleway, sans-serif;
+            background-color : #ccc;
+        }
+
+
     </style>
     <title>Family Hub</title>
 </head>
@@ -207,14 +239,20 @@
                 <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
             </div>
 
-            <div class="EventList" id="EventList">
-                <div ></div>
-            </div>
+
+            <div class="EventList" id="EventList"></div>
 
             <div class="EventInfo" id="EventInfo">
-                <div class = "EventImage" id="EventImage">a</div>
-                <div class = "EventTitle" id="EventTitle">a</div>
-                <div class = "EventDescription" id="EventDescription">v</div>
+                <div class = "EventImage" id="EventImage">
+                    image
+
+                </div>
+                <div class = "EventTitle" id="EventTitle">
+                    this is the title
+                </div>
+                <div class = "EventDescription" id="EventDescription">
+                    description
+                </div>
             </div>
 
         </div>
