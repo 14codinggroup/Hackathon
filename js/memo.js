@@ -11,6 +11,12 @@ function resize_canvas() {
     init();
 }
 
+function DestroyMemo(){
+    memo_array = [];
+    document.getElementById('MemoCanvas').style.display = 'none';
+    document.getElementById('MemoBtnContainer').style.display = 'none';
+}
+
 var memo_array = new Array();
 
 function AddMemo() {

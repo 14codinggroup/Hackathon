@@ -18,6 +18,13 @@ function onclick_event(){
     event_init();
 }
 
+function onclick_header(){
+    document.getElementById('MiddleContent').style.display = 'block';
+    document.getElementById('FooterContent').style.display = 'block';
+    DestroyMemo();
+    //DestroyCalendar();
+}
+
 function draw() {
     // ui resize
     //var w = document.getElementById('MemoContent').clientWidth;
