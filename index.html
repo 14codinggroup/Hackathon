@@ -165,6 +165,7 @@
             color: #ffffff;
             background: #5e5e5e;
             line-height: 5;
+            width: 100%;
         }
 
         .EventList div:hover{
@@ -182,22 +183,28 @@
         }
 
         .EventInfo > .EventImage{
-            background-color : #ccc;
+            background : url('./public/resource/event_icon.jpg');
+            width : auto;
+            line-height: 10;
         }
 
         .EventInfo > .EventTitle{
             font-size: 20px;
+            font-weight: 700;
             text-align: center;
             margin:10px;
-            padding:20px
+            padding:20px;
             font-family: 'Lato', sans-serif;
         }
 
         .EventInfo > .EventDescription{
             font-size: 16px;
             font-family: Raleway, sans-serif;
+            font-weight: 400;
             background-color : #ccc;
+            padding:10px;
         }
+
 
 
     </style>
@@ -240,12 +247,17 @@
             </div>
 
 
-            <div class="EventList" id="EventList"></div>
+            <div class="EventList" id="EventList">
+                <div class="temp" id="temp">a</div>
+            </div>
 
             <div class="EventInfo" id="EventInfo">
+                <div class="returnEventList" id="returnEventList">
+                    <input class='backb' id='backb' type='button' value="<" onclick="return_event()">
+                </div>
+
                 <div class = "EventImage" id="EventImage">
                     image
-
                 </div>
                 <div class = "EventTitle" id="EventTitle">
                     this is the title
