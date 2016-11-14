@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "999785146973",
+    "project_id": "webview-e64af"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999785146973:android:2eaf5e2ffe601115",
+        "android_client_info": {
+          "package_name": "androm.dujin.webview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPe5Zl7UV_HhgshrFJc8G5p4G2KedHzDo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
