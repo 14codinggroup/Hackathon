@@ -9,12 +9,14 @@
   {
     "id": 1,
     "title": "t2",
-    "start": "2016-11-15"
+    "start": "2016-11-15",
+    "info": "gihihih"
   },
   {
     "title": "t3",
     "start": "2016-11-17",
-    "end": "2016-11-18"
+    "end": "2016-11-18",
+    "info": "gggggggggggg"
   },
   {
     "title": "t4",

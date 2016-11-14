@@ -10,24 +10,48 @@
     <script>
         $(document).ready(function () {
 
-            var calendar = $('#calendar').fullCalendar({
-                header:{
-                    left: 'prev,next today',
+            var calendar;
+            calendar = $('#calendar').fullCalendar({
+                customButtons: {
+                    addScheduleButton: {
+                        text: 'add schedule',
+                        click: function () {
+                            window.location.href = "addSchedule.html";
+                            /*          var add = new Array();
+                             add["start"] = prompt("start date");
+                             if(!add["start"]){
+                             alert("must type start date");
+                             return false;
+                             }
+                             add["end"] = prompt("end date");
+                             add["title"] = prompt("title");
+                             if(!add["title"]){
+                             alert("must type title")
+                             return false;
+                             }
+                             add["info"] = prompt("information");
+                             calendar.fullCalendar('renderEvent', add,true);
+                             */
+                        }
+                    }
+                },
+                header: {
+                    left: 'prev,next today addScheduleButton',
                     center: 'title',
                     right: 'month, agendaWeek, agendaDay'
                 },
 
                 selectable: true,
                 selectHelper: true,
-                
+
                 select: function (start, end, allDay) {
                     var title = prompt('Event Title:');
 
-                    if(title){
+                    if (title) {
                         calendar.fullCalendar('renderEvent',
                                 {
-                                    title:title,
-                                    start:start,
+                                    title: title,
+                                    start: start,
                                     end: end,
                                     allDay: allDay
                                 },
@@ -35,12 +59,6 @@
                         );
                     }
 
-                    calendar.fullCalendar('addEventSource', {
-                        "title":title,
-                        "start":start,
-                        "end":end,
-                        "allDay": allDay
-                    });
                     calendar.fullCalendar('unselect');
                 },
 
@@ -51,10 +69,17 @@
                 events: {
                     url: "events.json"
                 },
-                eventsClick: function(event, element){
-                    alert("CLICKED")
-                    event.title = "CLICKED!";
-                    $('#calendar').fullCalendar('updateEvent', event);
+                eventClick: function (calEvent, jsEvent, view) {
+                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(calEvent);
+                    /*       if(calEvent.info){
+                     alert('Info: '+calEvent.info);
+                     }
+
+                     var respone = confirm("삭제할거니?");
+
+                     if(respone == true){
+                     calendar.fullCalendar('removeEvents', calEvent._id);
+                     }*/
                 }
             });
 

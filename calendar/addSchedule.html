@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>schedule</title>
+    <script src="form.js"></script>
+</head>
+<body>
+    <div id="MainContent">
+    <form action = "#" id="form_id" method = "post">
+
+
+        <legend>날짜</legend></br>
+        시작 날: <input type="date" id="start"/><br><br>
+        끝 날: <input type="date" id="end"/><br><br>
+
+        <br>
+
+        <legend>내용</legend></br>
+        제목: <input type="text" id="title"/><br><br>
+        세부 내용: <textarea id="info" cols="50" rows="5"></textarea><br><br>
+
+        <button type="button" onclick="addSchedule()" id="addScheduleButton">일정 추가</button>
+        <button type="button" onclick="return_index()" id="returnWithoutChange">돌아가기</button>
+        <!--add 버튼을 누르면 작성된 데이터가 있는지 없는지 판단 & valid한지 판단하고
+        valid하면 database에 해당 내용을 업데이트 시킨다. 그리고 또 추가할 것인지 confirm하고
+         아니라면 index.html로 돌아온다.-->
+    </form>
+    </div>
+</body>
+</html>
