@@ -1,11 +1,14 @@
 var canvas;
 var ctx;
 
+var m_width;
+
 function resize_canvas() {
     canvas = document.getElementById("MemoCanvas");
     ctx = canvas.getContext("2d");
-    ctx.canvas.width  = document.getElementById('LobbyContent').clientWidth * 980 / 1000;
-    ctx.canvas.height = document.getElementById('LobbyContent').clientHeight * 1000 / 1000;
+    ctx.canvas.width  = document.getElementById('MemoBtnContainer').clientWidth;
+    ctx.canvas.height = document.getElementById('LobbyContent').clientHeight * 9 / 10;
+    m_width = ctx.canvas.width * 23 / 100;
 
     //start loop
     init();
@@ -13,8 +16,7 @@ function resize_canvas() {
 
 function DestroyMemo(){
     memo_array = [];
-    document.getElementById('MemoCanvas').style.display = 'none';
-    document.getElementById('MemoBtnContainer').style.display = 'none';
+    document.getElementById('MemoPage').style.display = 'none';
 }
 
 var memo_array = new Array();
@@ -22,17 +24,18 @@ var memo_array = new Array();
 function AddMemo() {
     var inputContent = prompt('메모 내용', '');
     if (inputContent == '') return;
-    var my = parseInt(memo_array.length / 4) * 100 + 100;
-    var mx = (memo_array.length % 4) * 100;
+    if (inputContent == null) return;
+    var my = parseInt(memo_array.length / 4) * (m_width * 25 / 23) + 20;
+    var mx = (memo_array.length % 4) * (m_width  * 25 / 23) + m_width / 20;
 
     var color_R = parseInt(Math.random() * 255) + 1;
     var color_G = parseInt(Math.random() * 255) + 1;
     var color_B = parseInt(Math.random() * 255) + 1;
 
     var color = 'rgba(' + color_R + ',' + color_G + ','
-        +color_B + ',' + 0.1 + ')';
+        +color_B + ',' + 0.5 + ')';
 
-    memo_array.push(new Memo(inputContent, mx, my, 100, 100, color));
+    memo_array.push(new Memo(inputContent, mx, my, m_width, m_width, color));
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ADD', data: inputContent };
     $.get('http://localhost:3000/data/memo', client_json, function(obj){
         console.log(obj)
@@ -164,7 +167,8 @@ function display(){
     var index_memo;
     for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
         ctx.fillStyle = memo_array[index_memo].color;
-        ctx.fillRect(memo_array[index_memo].x, memo_array[index_memo].y, 100, 100);
+        ctx.fillRect(memo_array[index_memo].x, memo_array[index_memo].y,
+            memo_array[index_memo].width, memo_array[index_memo].height);
 
         ctx.fillStyle = 'rgba(0,0,0,1)';
 
@@ -175,7 +179,7 @@ function display(){
             content_size = content_size - 10;
             count++;
         } while (content_size > 0);
-
+        ctx.font="12px Arial";
         for (var index_memo_size = 0; index_memo_size < count; index_memo_size++) {
             ctx.fillText(memo_array[index_memo].my_content.substr(index_memo_size,10),
                 memo_array[index_memo].x + 10, memo_array[index_memo].y + 40 + 20 * index_memo_size);
