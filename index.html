@@ -128,32 +128,41 @@
             font-family: Calibri;
             font-size: 35px;
         }
-        .MemoCanvas{
-            margin: 1%;
-            margin-top: 3%;
-            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
+        .MemoPage{
             display: none;
+        }
+        .MemoCanvas{
+            box-shadow: 0 1px 0px rgba(11,13,12, 0.2);
             width: auto;
         }
         .MemoBtnContainer{
             position: absolute;
-            top: 2%;
-            float: right;
-            right: 2%;
-            display: none;
+
+            bottom: 0;
+            width: 100%;
+            top:90%;
+            height: 10%;
+            background-color: #bce8f1;
+            text-align: center;
         }
         .but{
-            background-color: #4CAF50; /* Green */
+            background-color: #ffffff;
             border: none;
-            color: white;
             float: left;
-            width: 50%;
-
-            padding: 15px 24px;
+            width: 40%;
+            margin-top: 1%;
+            height:60%;
+            margin-left: 5%;
+            margin-right: 5%;
             text-align: center;
+
+            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
+
             text-decoration: none;
             display: block;
-            font-size: 16px;
+            font-weight: bold;
+            font-family: Calibri;
+            font-size: 18px;
         }
         .EventList {
             margin-left: 0;
@@ -195,14 +204,15 @@
                     </div>
                 </div>
             </div>
-            <canvas class="MemoCanvas" id="MemoCanvas" >
+            <div class="MemoPage" id="MemoPage">
+                <canvas class="MemoCanvas" id="MemoCanvas" >
 
-            </canvas>
-            <div class="MemoBtnContainer" id="MemoBtnContainer">
-                <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
-                <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
+                </canvas>
+                <div class="MemoBtnContainer" id="MemoBtnContainer">
+                    <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
+                    <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
+                </div>
             </div>
-
             <div class="EventList" id="EventList">
                 <div>
                 </div>
