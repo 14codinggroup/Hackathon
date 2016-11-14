@@ -1,10 +1,7 @@
 var event_array = new Array();
 
 function addDiv(id, date, url, title) {
-
-<<<<<<< HEAD
     var Lobby = document.getElementById('LobbyContent');
-
     var str =
         '<div class="EventList" id ="EventList' + id + '" style = "display: block" onclick="loadEvent(' + id + ')">' +
             '<div class = "EventListImage" style="background-image: url(' + url + ')"></div>' +
@@ -14,8 +11,6 @@ function addDiv(id, date, url, title) {
             '</div>' +
         '</div>';
     Lobby.insertAdjacentHTML( 'beforeend', str );
-    //divtest.onclick = loadEvent;
-
 }
 
 
@@ -26,31 +21,14 @@ function loadEvent(id){
         str = 'EventList' + i;
         document.getElementById(str).style.display = 'none';
     }
-
-
-=======
-    var list = document.getElementById('EventList');
-    var divtest = document.getElementById('temp');
-
-    //divtest.src = './public/resource/event_fireworks.jpg';
-    //divtest.style.backgroundImage = "url('calendar.png')";
-
-    list.appendChild(divtest);
-    divtest.onclick = loadEvent;
-}
-
-
-function loadEvent(){
-    document.getElementById('EventList').style.display = 'none';
->>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04
     document.getElementById('EventInfo').style.display = 'block';
 }
 
-function event_init() {
 
+
+function event_init() {
     var index_events;
     for (index_events = 0; index_events < 3; index_events++) {
-<<<<<<< HEAD
         event_array.push(new EventClass(index_events, index_events + 1, 'calendar.png', index_events * 100 + 3));
         addDiv(event_array[index_events].id, event_array[index_events].date, event_array[index_events].url, event_array[index_events].title);
     }
@@ -59,17 +37,8 @@ function event_init() {
 function EventClass (id, date, url, title) {
     this.id = id;
     this.date = date;
-=======
-        event_array.push(new EventClass(index_events + 1, index_events * 10 + 3, index_events * 100 + 3));
-        addDiv(event_array[index_events].url, event_array[index_events].title,event_array[index_events].date);
-    }
-}
-
-function EventClass (url, title, date) {
->>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04
     this.url = url;
     this.title = title;
-    this.date = date;
 }
 
 

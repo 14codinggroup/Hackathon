@@ -12,13 +12,8 @@ function onclick_event(){
     //lobby ui --> event ui
     document.getElementById('MiddleContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
-<<<<<<< HEAD
-    //document.getElementById('EventList').style.display = 'block';
-=======
     document.getElementById('EventInfo').style.display = 'none';
-    document.getElementById('EventList').style.display = 'block';
->>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04
-    //alert("A");
+    //document.getElementById('EventList').style.display = 'block';
     event_init();
 }
 
