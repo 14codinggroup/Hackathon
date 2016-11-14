@@ -8,7 +8,6 @@ function onclick_memo(){
     resize_canvas();
 }
 
-
 function onclick_event(){
     //lobby ui --> memo ui
     document.getElementById('MiddleContent').style.display = 'none';
