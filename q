@@ -1,0 +1,34 @@
+[1mdiff --git a/js/basic_ui.js b/js/basic_ui.js[m
+[1mindex b138ed0..fa6da33 100644[m
+[1m--- a/js/basic_ui.js[m
+[1m+++ b/js/basic_ui.js[m
+[36m@@ -22,6 +22,7 @@[m [mfunction onclick_header(){[m
+     document.getElementById('FooterContent').style.display = 'block';[m
+     DestroyMemo();[m
+     //DestroyCalendar();[m
+[32m+[m[32m    //DestryEvent();[m
+ }[m
+ [m
+ function draw() {[m
+[1mdiff --git a/js/memo.js b/js/memo.js[m
+[1mindex 19d779c..2421574 100644[m
+[1m--- a/js/memo.js[m
+[1m+++ b/js/memo.js[m
+[36m@@ -36,7 +36,7 @@[m [mfunction AddMemo() {[m
+         +color_B + ',' + 0.5 + ')';[m
+ [m
+     memo_array.push(new Memo(inputContent, mx, my, m_width, m_width, color));[m
+[31m-    var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ADD', data: inputContent };[m
+[32m+[m[32m    var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_DAD', data: inputContent };[m
+     $.get('http://localhost:3000/data/memo', client_json, function(obj){[m
+         console.log(obj)[m
+     });[m
+[36m@@ -179,7 +179,7 @@[m [mfunction display(){[m
+             content_size = content_size - 10;[m
+             count++;[m
+         } while (content_size > 0);[m
+[31m-[m
+[32m+[m[32m        ctx.font="12px Arial";[m
+         for (var index_memo_size = 0; index_memo_size < count; index_memo_size++) {[m
+             ctx.fillText(memo_array[index_memo].my_content.substr(index_memo_size,10),[m
+                 memo_array[index_memo].x + 10, memo_array[index_memo].y + 40 + 20 * index_memo_size);[m

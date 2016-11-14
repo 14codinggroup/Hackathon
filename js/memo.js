@@ -179,7 +179,7 @@ function display(){
             content_size = content_size - 10;
             count++;
         } while (content_size > 0);
-
+        ctx.font="12px Arial";
         for (var index_memo_size = 0; index_memo_size < count; index_memo_size++) {
             ctx.fillText(memo_array[index_memo].my_content.substr(index_memo_size,10),
                 memo_array[index_memo].x + 10, memo_array[index_memo].y + 40 + 20 * index_memo_size);

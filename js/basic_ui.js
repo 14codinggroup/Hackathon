@@ -22,6 +22,7 @@ function onclick_header(){
     document.getElementById('FooterContent').style.display = 'block';
     DestroyMemo();
     //DestroyCalendar();
+    //DestryEvent();
 }
 
 function draw() {
