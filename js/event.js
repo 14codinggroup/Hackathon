@@ -1,39 +1,46 @@
+var event_array = new Array();
 
-function addDiv(date, url, title) {
+function addDiv(id, date, url, title) {
 
-    var list = document.getElementById('EventList');
-    var image = document.createElement("img");
-    image.src = 'calendar.png';
-    list.appendChild(image);
+    var Lobby = document.getElementById('LobbyContent');
 
-    //divtest.style.backgroundImage = "url('calendar.png')";
-        //'<div style="background-image: url(' + url +
-        //+ ');"></div>' // ' //date + " + " + image + " + " + txt';
-    //divtest.
+    var str =
+        '<div class="EventList" id ="EventList' + id + '" style = "display: block" onclick="loadEvent(' + id + ')">' +
+            '<div class = "EventListImage" style="background-image: url(' + url + ')"></div>' +
+            '<div class = "EvnetListRight">' +
+                '<div class = "EventListTitle">' + title + '</div>' +
+                '<div class = "EventListDate">' + date + '</div>' +
+            '</div>' +
+        '</div>';
+    Lobby.insertAdjacentHTML( 'beforeend', str );
+    //divtest.onclick = loadEvent;
 
-
-    //list.appendChild(divtest);
-    divtest.onclick = loadEvent;
 }
 
 
 
-function loadEvent(){
-    document.getElementById('EventList').style.display = 'none';
+function loadEvent(id){
+    var str;
+    for(var i = 0; i < event_array.length; i++){
+        str = 'EventList' + i;
+        document.getElementById(str).style.display = 'none';
+    }
+
+
     document.getElementById('EventInfo').style.display = 'block';
 }
 
 function event_init() {
-    var event_array = new Array();
 
     var index_events;
     for (index_events = 0; index_events < 3; index_events++) {
-        event_array.push(new EventClass(index_events + 1, index_events * 10 + 3, index_events * 100 + 3));
-        addDiv(event_array[index_events].date, event_array[index_events].url, event_array[index_events].title);
+        event_array.push(new EventClass(index_events, index_events + 1, 'calendar.png', index_events * 100 + 3));
+        addDiv(event_array[index_events].id, event_array[index_events].date, event_array[index_events].url, event_array[index_events].title);
     }
 }
 
-function EventClass (date, url, title) {
+function EventClass (id, date, url, title) {
+    this.id = id;
     this.date = date;
     this.url = url;
     this.title = title;

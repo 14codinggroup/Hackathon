@@ -12,7 +12,7 @@ function onclick_event(){
     //lobby ui --> memo ui
     document.getElementById('MiddleContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
-    document.getElementById('EventList').style.display = 'block';
+    //document.getElementById('EventList').style.display = 'block';
     //alert("A");
     event_init();
 }
