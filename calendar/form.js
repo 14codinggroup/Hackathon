@@ -26,5 +26,5 @@ function addSchedule() {
 }
 
 function return_index() {
-    window.location.href="index.html";
+    window.location.href="calendar.html";
 }

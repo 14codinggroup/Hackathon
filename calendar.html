@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>basic usage</title>
-    <link rel="stylesheet" href="fullcalendar.css"/>
-    <script src="lib/jquery.min.js"></script>
-    <script src="lib/moment.min.js"></script>
-    <script src="fullcalendar.js"></script>
+    <link rel="stylesheet" href="calendar/fullcalendar.css"/>
+    <script src="calendar/lib/jquery.min.js"></script>
+    <script src="calendar/lib/moment.min.js"></script>
+    <script src="calendar/fullcalendar.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -17,21 +17,6 @@
                         text: 'add schedule',
                         click: function () {
                             window.location.href = "addSchedule.html";
-                            /*          var add = new Array();
-                             add["start"] = prompt("start date");
-                             if(!add["start"]){
-                             alert("must type start date");
-                             return false;
-                             }
-                             add["end"] = prompt("end date");
-                             add["title"] = prompt("title");
-                             if(!add["title"]){
-                             alert("must type title")
-                             return false;
-                             }
-                             add["info"] = prompt("information");
-                             calendar.fullCalendar('renderEvent', add,true);
-                             */
                         }
                     }
                 },
@@ -67,19 +52,10 @@
                 eventLimit: true,
                 TouchSupport: true,
                 events: {
-                    url: "events.json"
+                    url: "calendar/events.json"
                 },
                 eventClick: function (calEvent, jsEvent, view) {
                     window.location.href = "updateSchedule.html?Events="+JSON.stringify(calEvent);
-                    /*       if(calEvent.info){
-                     alert('Info: '+calEvent.info);
-                     }
-
-                     var respone = confirm("삭제할거니?");
-
-                     if(respone == true){
-                     calendar.fullCalendar('removeEvents', calEvent._id);
-                     }*/
                 }
             });
 

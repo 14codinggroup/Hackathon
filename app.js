@@ -35,7 +35,7 @@ var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/calendar.html');
 });
 
 app.get('/data/memo', function(req, res){
