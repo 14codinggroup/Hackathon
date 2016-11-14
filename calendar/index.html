@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic usage</title>
+    <link rel="stylesheet" href="fullcalendar.css"/>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="fullcalendar.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var calendar = $('#calendar').fullCalendar({
+                header:{
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month, agendaWeek, agendaDay'
+                },
+
+                selectable: true,
+                selectHelper: true,
+                
+                select: function (start, end, allDay) {
+                    var title = prompt('Event Title:');
+
+                    if(title){
+                        calendar.fullCalendar('renderEvent',
+                                {
+                                    title:title,
+                                    start:start,
+                                    end: end,
+                                    allDay: allDay
+                                },
+                                true
+                        );
+                    }
+
+                    calendar.fullCalendar('addEventSource', {
+                        "title":title,
+                        "start":start,
+                        "end":end,
+                        "allDay": allDay
+                    });
+                    calendar.fullCalendar('unselect');
+                },
+
+                navLinks: true,
+                editable: true,
+                eventLimit: true,
+                TouchSupport: true,
+                events: {
+                    url: "events.json"
+                },
+                eventsClick: function(event, element){
+                    alert("CLICKED")
+                    event.title = "CLICKED!";
+                    $('#calendar').fullCalendar('updateEvent', event);
+                }
+            });
+
+        });
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="calendar"></div>
+</body>
+</html>
