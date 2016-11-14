@@ -163,6 +163,7 @@
             display: none;
 
         }
+<<<<<<< HEAD
 
         .EventList .EventListImage{
             float:left;
@@ -185,6 +186,14 @@
         }
         .EventList .EventListDate{
             height: 50%;
+=======
+        .EventList div {
+            margin-left: 0;
+            color: #ffffff;
+            background: #5e5e5e;
+            line-height: 5;
+            width: 100%;
+>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04
         }
 
         .EventList:hover{
@@ -203,11 +212,14 @@
         }
 
         .EventInfo > .EventImage{
-            background-color : #ccc;
+            background : url('./public/resource/event_icon.jpg');
+            width : auto;
+            line-height: 10;
         }
 
         .EventInfo > .EventTitle{
             font-size: 20px;
+            font-weight: 700;
             text-align: center;
             margin:10px;
             padding:20px;
@@ -217,8 +229,11 @@
         .EventInfo > .EventDescription{
             font-size: 16px;
             font-family: Raleway, sans-serif;
+            font-weight: 400;
             background-color : #ccc;
+            padding:10px;
         }
+
 
 
     </style>
@@ -260,10 +275,32 @@
                 <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
             </div>
 
+<<<<<<< HEAD
             <div class="EventInfo" id="EventInfo">
                 <div class = "EventImage" id="EventImage"></div>
                 <div class = "EventTitle" id="EventTitle">TITLE</div>
                 <div class = "EventDescription" id="EventDescription"></div>
+=======
+
+            <div class="EventList" id="EventList">
+                <div class="temp" id="temp">a</div>
+            </div>
+
+            <div class="EventInfo" id="EventInfo">
+                <div class="returnEventList" id="returnEventList">
+                    <input class='backb' id='backb' type='button' value="<" onclick="return_event()">
+                </div>
+
+                <div class = "EventImage" id="EventImage">
+                    image
+                </div>
+                <div class = "EventTitle" id="EventTitle">
+                    this is the title
+                </div>
+                <div class = "EventDescription" id="EventDescription">
+                    description
+                </div>
+>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04
             </div>
 
         </div>

@@ -1,0 +1,191 @@
+[1mdiff --cc index.html[m
+[1mindex 24cc8db,fe0487e..0000000[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@@ -155,39 -155,20 +155,48 @@@[m
+              display: block;[m
+              font-size: 16px;[m
+          }[m
+[32m +[m
+          .EventList {[m
+[31m -            background: #333;[m
+[31m -            margin-left: 0;[m
+[32m +            width: 100%;[m
+[32m +            height: 10%;[m
+[32m +            position: relative;[m
+              display: none;[m
+[32m +[m
+[32m +        }[m
+[32m++<<<<<<< HEAD[m
+[32m +[m
+[32m +        .EventList .EventListImage{[m
+[32m +            float:left;[m
+[32m +            width: 20%;[m
+[32m +            height: 100%;[m
+[32m +            background-repeat: no-repeat;[m
+[32m +            background-size:cover;[m
+          }[m
+[32m +        .EvnetListRight{[m
+[32m +            width: 80%;[m
+[32m +            height: 100%;[m
+[32m +            background-color: #bce8f1;[m
+[32m +            float: left;[m
+[32m +            text-align: center;[m
+[32m +            text-decoration: none;[m
+[32m +            font-size: 8px;[m
+[32m +        }[m
+[32m +        .EventList .EventListTitle{[m
+[32m +            height: 50%;[m
+[32m +        }[m
+[32m +        .EventList .EventListDate{[m
+[32m +            height: 50%;[m
+[32m++=======[m
+[32m+         .EventList div {[m
+[32m+             margin-left: 0;[m
+[32m+             color: #ffffff;[m
+[32m+             background: #5e5e5e;[m
+[32m+             line-height: 5;[m
+[32m+             width: 100%;[m
+[32m++>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04[m
+          }[m
+  [m
+[31m -        .EventList div:hover{[m
+[32m +        .EventList:hover{[m
+              opacity: 0.7;[m
+          }[m
+  [m
+[36m@@@ -260,10 -246,25 +275,32 @@@[m
+                  <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">[m
+              </div>[m
+  [m
+[32m++<<<<<<< HEAD[m
+[32m +            <div class="EventInfo" id="EventInfo">[m
+[32m +                <div class = "EventImage" id="EventImage"></div>[m
+[32m +                <div class = "EventTitle" id="EventTitle">TITLE</div>[m
+[32m +                <div class = "EventDescription" id="EventDescription"></div>[m
+[32m++=======[m
+[32m+ [m
+[32m+             <div class="EventList" id="EventList">[m
+[32m+                 <div class="temp" id="temp">a</div>[m
+[32m+             </div>[m
+[32m+ [m
+[32m+             <div class="EventInfo" id="EventInfo">[m
+[32m+                 <div class="returnEventList" id="returnEventList">[m
+[32m+                     <input class='backb' id='backb' type='button' value="<" onclick="return_event()">[m
+[32m+                 </div>[m
+[32m+ [m
+[32m+                 <div class = "EventImage" id="EventImage">[m
+[32m+                     image[m
+[32m+                 </div>[m
+[32m+                 <div class = "EventTitle" id="EventTitle">[m
+[32m+                     this is the title[m
+[32m+                 </div>[m
+[32m+                 <div class = "EventDescription" id="EventDescription">[m
+[32m+                     description[m
+[32m+                 </div>[m
+[32m++>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04[m
+              </div>[m
+  [m
+          </div>[m
+[1mdiff --cc js/basic_ui.js[m
+[1mindex 3312eb3,3e8c160..0000000[m
+[1m--- a/js/basic_ui.js[m
+[1m+++ b/js/basic_ui.js[m
+[36m@@@ -9,10 -9,11 +9,15 @@@[m [mfunction onclick_memo()[m
+  }[m
+  [m
+  function onclick_event(){[m
+[31m-     //lobby ui --> memo ui[m
+[32m+     //lobby ui --> event ui[m
+      document.getElementById('MiddleContent').style.display = 'none';[m
+      document.getElementById('FooterContent').style.display = 'none';[m
+[32m++<<<<<<< HEAD[m
+[32m +    //document.getElementById('EventList').style.display = 'block';[m
+[32m++=======[m
+[32m+     document.getElementById('EventInfo').style.display = 'none';[m
+[32m+     document.getElementById('EventList').style.display = 'block';[m
+[32m++>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04[m
+      //alert("A");[m
+      event_init();[m
+  }[m
+[1mdiff --cc js/event.js[m
+[1mindex 53688a0,a54cdad..0000000[m
+[1m--- a/js/event.js[m
+[1m+++ b/js/event.js[m
+[36m@@@ -1,32 -1,19 +1,48 @@@[m
+[32m +var event_array = new Array();[m
+  [m
+[31m -function addDiv(date, url, title) {[m
+[32m +function addDiv(id, date, url, title) {[m
+  [m
+[32m++<<<<<<< HEAD[m
+[32m +    var Lobby = document.getElementById('LobbyContent');[m
+[32m +[m
+[32m +    var str =[m
+[32m +        '<div class="EventList" id ="EventList' + id + '" style = "display: block" onclick="loadEvent(' + id + ')">' +[m
+[32m +            '<div class = "EventListImage" style="background-image: url(' + url + ')"></div>' +[m
+[32m +            '<div class = "EvnetListRight">' +[m
+[32m +                '<div class = "EventListTitle">' + title + '</div>' +[m
+[32m +                '<div class = "EventListDate">' + date + '</div>' +[m
+[32m +            '</div>' +[m
+[32m +        '</div>';[m
+[32m +    Lobby.insertAdjacentHTML( 'beforeend', str );[m
+[32m +    //divtest.onclick = loadEvent;[m
+[32m +[m
+[32m +}[m
+[32m +[m
+[32m +[m
+[32m +[m
+[32m +function loadEvent(id){[m
+[32m +    var str;[m
+[32m +    for(var i = 0; i < event_array.length; i++){[m
+[32m +        str = 'EventList' + i;[m
+[32m +        document.getElementById(str).style.display = 'none';[m
+[32m +    }[m
+[32m +[m
+[32m +[m
+[32m++=======[m
+[32m+     var list = document.getElementById('EventList');[m
+[32m+     var divtest = document.getElementById('temp');[m
+[32m+ [m
+[32m+     //divtest.src = './public/resource/event_fireworks.jpg';[m
+[32m+     //divtest.style.backgroundImage = "url('calendar.png')";[m
+[32m+ [m
+[32m+     list.appendChild(divtest);[m
+[32m+     divtest.onclick = loadEvent;[m
+[32m+ }[m
+[32m+ [m
+[32m+ [m
+[32m+ function loadEvent(){[m
+[32m+     document.getElementById('EventList').style.display = 'none';[m
+[32m++>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04[m
+      document.getElementById('EventInfo').style.display = 'block';[m
+  }[m
+  [m
+[36m@@@ -34,16 -21,16 +50,26 @@@[m [mfunction event_init() [m
+  [m
+      var index_events;[m
+      for (index_events = 0; index_events < 3; index_events++) {[m
+[32m++<<<<<<< HEAD[m
+[32m +        event_array.push(new EventClass(index_events, index_events + 1, 'calendar.png', index_events * 100 + 3));[m
+[32m +        addDiv(event_array[index_events].id, event_array[index_events].date, event_array[index_events].url, event_array[index_events].title);[m
+[32m +    }[m
+[32m +}[m
+[32m +[m
+[32m +function EventClass (id, date, url, title) {[m
+[32m +    this.id = id;[m
+[32m +    this.date = date;[m
+[32m++=======[m
+[32m+         event_array.push(new EventClass(index_events + 1, index_events * 10 + 3, index_events * 100 + 3));[m
+[32m+         addDiv(event_array[index_events].url, event_array[index_events].title,event_array[index_events].date);[m
+[32m+     }[m
+[32m+ }[m
+[32m+ [m
+[32m+ function EventClass (url, title, date) {[m
+[32m++>>>>>>> b8c0e59624b7cc245c8f3aae46ef934e259e5d04[m
+      this.url = url;[m
+      this.title = title;[m
+[32m+     this.date = date;[m
+  }[m
+  [m
+  [m
