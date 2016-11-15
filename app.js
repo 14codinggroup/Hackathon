@@ -1,22 +1,34 @@
+/* express */
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server);
 
+
+/* Binding */
 app.use('/public', express.static('public'));
+app.use('/calendar', express.static('calendar'));
 app.use('/js', express.static('js'));
 
-var mongoose = require('mongoose');
 
+/* Web Server Open at 3000 */
 server.listen(3000);
 console.log("wait port 3000")
 
+
+/* Rendring index */
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
+
+/* Declare Mongo */
+var mongoose = require('mongoose');
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function(){
     console.log("connected mongo serv");
 });
-
 mongoose.connect('mongodb://localhost/hackathon_db', function(err){
     if(err) console.log(err);
 });
@@ -24,20 +36,16 @@ var memoSchema = mongoose.Schema({
     data: String,
     created: {type: Date, default: Date.now}
 });
-
 var calendarSchema = mongoose.Schema({
     id: String,
     data: String,
     created: {type: Date, default: Date.now}
 });
-
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/calendar.html');
-});
 
+/* Mongo Act */
 app.get('/data/memo', function(req, res){
     var client_obj = req.query;
     switch (client_obj.msg) {
@@ -70,6 +78,26 @@ app.get('/data/memo', function(req, res){
         default:
             return
             break;
+    }
+});
+
+/* firebase */
+var gcm = require('node-gcm');
+var message = new gcm.Message();
+
+message.addData('hello', 'world');
+message.addNotification('title', 'Hello');
+message.addNotification('icon', 'ic_launcher');
+message.addNotification('body', 'World');
+
+var regTokens = ['a'];
+var sender = new gcm.Sender('AIzaSyDIG6zqCH8j82fpHjHfzqtniy2dXTkfHUg');
+
+sender.send(message, regTokens, function (err, response) {
+    if(err) {
+        console.error(err);
+    } else {
+        console.log(response);
     }
 });
 
