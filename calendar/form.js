@@ -50,10 +50,10 @@ function LoadCalendar() {
 }
 
 var k =   {
-    "title": "t1",
-        "start": "2016-11-13",
+    "title": "승민 생일",
+        "start": "2017-01-10",
         "end": null,
-        "info": "gihihih"
+        "info": "이새끼생일을 왜챙겨야되지"
 }
 
 
@@ -81,4 +81,11 @@ function UpdateCalendar(oldEvent, updateInfo) {
         console.log('Request DeleteEvent');
     });
 }
+var k2 =   {
+    "title": "승민",
+    "start": "2017-01-10",
+    "end": null,
+    "info": "이새끼생일을 왜챙겨야되지"
+}
+UpdateCalendar(k,k2);
 

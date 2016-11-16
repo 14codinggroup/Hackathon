@@ -102,17 +102,17 @@ app.get('/data/calendar', function(req, res){
             break;
         case "REQUEST_CALENDAR_DEL":
             //var newMsg = new Memo({data: client_obj.data});
-            Calendar.remove({title: client_obj.title, start: client_obj.start
-                    , end: client_obj.end, info: client_obj.info}, function (err) {
+            Calendar.remove({title: client_obj.data.title, start: client_obj.data.start
+                    , end: client_obj.data.end, info: client_obj.data.info}, function (err) {
                 if(err) console.log(err);
                 console.log("del calendar");
             });
             break;
         case "REQUEST_CALENDAR_UPDATE":
-            Calendar.remove({data: client_obj.data}, function (err) {
+            Calendar.update( client_obj.data.oldEvent, client_obj.data.updateInfo, function (err) {
                 if(err) console.log(err);
                 console.log("update calendar");
-            });
+            })
             break;
         default:
             return
