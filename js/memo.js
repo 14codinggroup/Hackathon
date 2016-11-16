@@ -3,6 +3,8 @@ var ctx;
 
 var m_width;
 
+var myAddress = 'http://localhost:3000/data/memo';
+
 function resize_canvas() {
     canvas = document.getElementById("MemoCanvas");
     ctx = canvas.getContext("2d");
@@ -37,7 +39,7 @@ function AddMemo() {
 
     memo_array.push(new Memo(inputContent, mx, my, m_width, m_width, color));
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ADD', data: inputContent };
-    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+    $.get(myAddress, client_json, function(obj){
         console.log(obj)
     });
 }
@@ -67,21 +69,21 @@ function init() {
 }
 function LoadMemo() {
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: "" };
-    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+    $.get(myAddress, client_json, function(obj){
         var memo_json = JSON.parse(obj);
         console.log(memo_json.data);
         for (var i = 0; i < memo_json.data.length; i++){
-            var my = parseInt(memo_array.length / 4) * 100 + 100;
-            var mx = (memo_array.length % 4) * 100;
+            var my = parseInt(memo_array.length / 4) * (m_width * 25 / 23) + 20;
+            var mx = (memo_array.length % 4) * (m_width  * 25 / 23) + m_width / 20;
 
             var color_R = parseInt(Math.random() * 255) + 1;
             var color_G = parseInt(Math.random() * 255) + 1;
             var color_B = parseInt(Math.random() * 255) + 1;
 
             var color = 'rgba(' + color_R + ',' + color_G + ','
-                +color_B + ',' + 0.1 + ')';
+                +color_B + ',' + 0.5 + ')';
 
-            memo_array.push(new Memo(memo_json.data[i], mx, my, 100, 100, color));
+            memo_array.push(new Memo(memo_json.data[i], mx, my, m_width, m_width, color));
         }
 
     });
@@ -122,7 +124,7 @@ function mouseDownListener(evt) {
             var del_data = memo_array[delIndex].my_content
             console.log(del_data);
             var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_DEL', data: del_data };
-            $.get('http://localhost:3000/data/memo', client_json, function(obj){
+            $.get(myAddress, client_json, function(obj){
                 console.log(obj)
             });
             memo_array.splice(delIndex,1);
