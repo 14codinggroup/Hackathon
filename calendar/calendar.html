@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>basic usage</title>
-    <link rel="stylesheet" href="calendar/fullcalendar.css"/>
-    <script src="calendar/lib/jquery.min.js"></script>
-    <script src="calendar/lib/moment.min.js"></script>
-    <script src="calendar/fullcalendar.js"></script>
+    <title>long time to see</title>
+    <link rel="stylesheet" href="fullcalendar.css"/>
+    <link rel="stylesheet" href="fullcalendar.print.css" media="print"/>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="fullcalendar.js"></script>
     <script>
+
         $(document).ready(function () {
 
-            var calendar;
-            calendar = $('#calendar').fullCalendar({
+            $('#calendar').fullCalendar({
                 customButtons: {
                     addScheduleButton: {
                         text: 'add schedule',
@@ -25,37 +26,36 @@
                     center: 'title',
                     right: 'month, agendaWeek, agendaDay'
                 },
-
+/* select 기능을 배제, 즉 addSchedule 버튼을 사용해야만 events를 추가할 수 있을것
                 selectable: true,
                 selectHelper: true,
 
-                select: function (start, end, allDay) {
+                select: function (start, end) {
                     var title = prompt('Event Title:');
+                    var eventData;
 
                     if (title) {
-                        calendar.fullCalendar('renderEvent',
-                                {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: allDay
-                                },
-                                true
-                        );
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true);
                     }
 
-                    calendar.fullCalendar('unselect');
+                    $('#calendar').fullCalendar('unselect');
                 },
-
-                navLinks: true,
+*/
                 editable: true,
                 eventLimit: true,
-                TouchSupport: true,
                 events: {
-                    url: "calendar/events.json"
+                    url: 'events.json'
                 },
-                eventClick: function (calEvent, jsEvent, view) {
-                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(calEvent);
+
+
+                eventClick: function (event) {
+                    alert(event);
+                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(event);
                 }
             });
 
