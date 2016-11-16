@@ -5,7 +5,7 @@
     <title>schedule</title>
     <script src="form.js"></script>
     <script>
-        var QueryString = (function () {
+        var selectedEvent = (function () {
             // This function is anonymous, is executed immediately and
             // the return value is assigned to QueryString!
             var query_string = {};
@@ -44,21 +44,22 @@
         제목: <input type="text" id="title"/><br><br>
         세부 내용: <textarea id="info" cols="50" rows="5"></textarea><br><br>
 
-        <button type="button" onclick="addSchedule()" id="addScheduleButton">일정 변경</button>
+        <button type="button" onclick="updateSchedule(selectedEvent)" id="updateScheduleButton">일정 변경</button>
+        <button type="button" onclick="deleteSchedule(selectedEvent)" id="deleteScheduleButton">일정 삭제</button>
         <button type="button" onclick="return_index()" id="returnWithoutChange">돌아가기</button>
     </form>
     </div>
     <script>
         (function () {
-            document.getElementById("start").value = QueryString["start"];
-            if(QueryString["end"] != undefined) {
-                document.getElementById("end").value = QueryString["end"];
+            document.getElementById("start").value = selectedEvent["start"];
+            if(selectedEvent["end"] != undefined) {
+                document.getElementById("end").value = selectedEvent["end"];
             }else{
-                document.getElementById("end").value = QueryString["start"];
+                document.getElementById("end").value = selectedEvent["start"];
             }
-            document.getElementById("title").value = QueryString["title"];
-            if(QueryString["info"] != undefined) {
-                document.getElementById("info").value = QueryString["info"];
+            document.getElementById("title").value = selectedEvent["title"];
+            if(selectedEvent["info"] != undefined) {
+                document.getElementById("info").value = selectedEvent["info"];
             }
         }());
     </script>

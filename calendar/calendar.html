@@ -12,7 +12,7 @@
     <script>
 
         $(document).ready(function () {
-    //        var savedEvents = LoadEvents();
+     //       var savedEvents = LoadEvents();
 
             $('#calendar').fullCalendar({
                 customButtons: {
@@ -29,7 +29,7 @@
                     right: 'month, agendaWeek, agendaDay'
                 },
 
-                editable: true,
+                editable: false,
                 eventLimit: true,
                 events: {
                     url: 'events.json'
@@ -37,7 +37,6 @@
 
 
                 eventClick: function (event) {
-                    alert(event);
                     window.location.href = "updateSchedule.html?Events="+JSON.stringify(event);
                 }
             });
