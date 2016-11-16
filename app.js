@@ -39,8 +39,8 @@ var memoSchema = mongoose.Schema({
 var calendarSchema = mongoose.Schema({
     title: String,
     start: String,
-    end: {type: String, default: null},
-    info: {type: String, default: null}
+    end: {type: String, default: ""},
+    info: {type: String, default: ""}
 });
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
@@ -95,6 +95,7 @@ app.get('/data/calendar', function(req, res){
         case "REQUEST_CALENDAR_ADD": // Adding one to mongo
             var newCalendar = new Calendar({title: client_obj.data.title, start: client_obj.data.start
                                         , end: client_obj.data.end, info: client_obj.data.info});
+            console.log(client_obj.data);
             newCalendar.save(function (err) {
                 if(err) console.log(err);
                 console.log("save calendar");

@@ -13,6 +13,9 @@ function addSchedule() {
         document.getElementById("start").focus();
         return false;
     }
+    if(!event['end']){
+        event['end'] = event['start'];
+    }
     if(!event['title']){
         alert("title은 필수입니다.");
         document.getElementById("title").focus();
@@ -49,6 +52,9 @@ function updateSchedule(oldEvent) {
         document.getElementById("start").focus();
         return false;
     }
+    if(!event['end']){
+        event['end'] = event['start'];
+    }
     if(!event['title']){
         alert("title은 필수입니다.");
         document.getElementById("title").focus();
@@ -65,22 +71,24 @@ function updateSchedule(oldEvent) {
 }
 
 var dbLink = 'http://localhost:3000/data/calendar';
+
 var savedEvents = new Array();
 function LoadCalendar() {
+
+    savedEvents = [];
+    var k;
     console.log('load calendar');
     var requestMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDAR_ALL', data: ''};
 
     $.get(dbLink, requestMsg, function (obj) {
         var temp = JSON.parse(obj);
-        for(var i=0;i<temp.data.length;i++){
-            savedEvents.push(temp.data[i]);
-        }
-
-        console.log('Request GetAllEvent');
+        savedEvents = temp.data;
+        console.log(savedEvents);
      });
-    console.log(savedEvents);
     return savedEvents;
 }
+
+
 
 function AddCalendar(event) {
     var client_json = {title: event['title'], start: event['start'],
