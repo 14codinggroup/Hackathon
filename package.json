@@ -1,9 +1,12 @@
 {
   "name": "hackathon",
   "version": "1.0.0",
+  "privae": true,
   "dependencies": {
     "express": "~4.13.1",
+    "firebase": "^3.6.0",
     "mongoose": "^4.6.6",
+    "node-gcm": "^0.14.4",
     "socket.io": "^1.4.8"
   }
 }
