@@ -8,9 +8,11 @@
     <script src="lib/jquery.min.js"></script>
     <script src="lib/moment.min.js"></script>
     <script src="fullcalendar.js"></script>
+    <script src="form.js"></script>
     <script>
 
         $(document).ready(function () {
+    //        var savedEvents = LoadEvents();
 
             $('#calendar').fullCalendar({
                 customButtons: {
@@ -26,26 +28,7 @@
                     center: 'title',
                     right: 'month, agendaWeek, agendaDay'
                 },
-/* select 기능을 배제, 즉 addSchedule 버튼을 사용해야만 events를 추가할 수 있을것
-                selectable: true,
-                selectHelper: true,
 
-                select: function (start, end) {
-                    var title = prompt('Event Title:');
-                    var eventData;
-
-                    if (title) {
-                        eventData = {
-                            title: title,
-                            start: start,
-                            end: end
-                        };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true);
-                    }
-
-                    $('#calendar').fullCalendar('unselect');
-                },
-*/
                 editable: true,
                 eventLimit: true,
                 events: {
