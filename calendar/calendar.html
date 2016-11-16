@@ -10,9 +10,10 @@
     <script src="fullcalendar.js"></script>
     <script src="form.js"></script>
     <script>
-
+        var savedEvents = LoadCalendar();
+        console.log(savedEvents);
         $(document).ready(function () {
-     //       var savedEvents = LoadEvents();
+
 
             $('#calendar').fullCalendar({
                 customButtons: {
@@ -31,13 +32,13 @@
 
                 editable: false,
                 eventLimit: true,
-                events: {
-                    url: 'events.json'
-                },
+                events: savedEvents,
 
 
-                eventClick: function (event) {
-                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(event);
+                eventClick: function (calEvent) {
+                    console.log(calEvent);
+                    var dummy_json = {title: calEvent.title, start: calEvent.start, end: calEvent.end, info: calEvent.info};
+                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(dummy_json);
                 }
             });
 

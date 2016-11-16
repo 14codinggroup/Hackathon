@@ -88,7 +88,7 @@ app.get('/data/calendar', function(req, res){
         case "REQUEST_CALENDAR_ALL": // Semd All data of Memo
             Calendar.find(function (err, calendars) {
                 if(err) console.log(err);
-                var obj = { type: "MEMO", msg: 'RESPONSE_CALENDAR_ALL', data: calendars };
+                var obj = { type: "CALENDAR", msg: 'RESPONSE_CALENDAR_ALL', data: calendars };
                 res.send(JSON.stringify(obj));
             });
             break;
@@ -109,6 +109,8 @@ app.get('/data/calendar', function(req, res){
             });
             break;
         case "REQUEST_CALENDAR_UPDATE":
+            console.log(client_obj.data.oldEvent);
+            console.log(client_obj.data.updateInfo);
             Calendar.update( client_obj.data.oldEvent, client_obj.data.updateInfo, function (err) {
                 if(err) console.log(err);
                 console.log("update calendar");
