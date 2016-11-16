@@ -37,7 +37,7 @@ function AddMemo() {
 
     memo_array.push(new Memo(inputContent, mx, my, m_width, m_width, color));
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ADD', data: inputContent };
-    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+    $.get('http://dude.iptime.org:12112/data/memo', client_json, function(obj){
         console.log(obj)
     });
 }
@@ -67,7 +67,7 @@ function init() {
 }
 function LoadMemo() {
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: "" };
-    $.get('http://localhost:3000/data/memo', client_json, function(obj){
+    $.get('http://dude.iptime.org:12112/data/memo', client_json, function(obj){
         var memo_json = JSON.parse(obj);
         console.log(memo_json.data);
         for (var i = 0; i < memo_json.data.length; i++){
@@ -122,7 +122,7 @@ function mouseDownListener(evt) {
             var del_data = memo_array[delIndex].my_content
             console.log(del_data);
             var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_DEL', data: del_data };
-            $.get('http://localhost:3000/data/memo', client_json, function(obj){
+            $.get('http://dude.iptime.org:12112/data/memo', client_json, function(obj){
                 console.log(obj)
             });
             memo_array.splice(delIndex,1);
