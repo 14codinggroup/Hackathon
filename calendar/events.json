@@ -1,9 +1,8 @@
 [
   {
-    "id": 1,
     "title": "t1",
     "start": "2016-11-13",
-    "color": "red",
+    "end": null,
     "info": "gihihih"
   },
   {

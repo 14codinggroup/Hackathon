@@ -39,8 +39,8 @@ var memoSchema = mongoose.Schema({
 var calendarSchema = mongoose.Schema({
     title: String,
     start: String,
-    end: String,
-    info: String
+    end: {type: String, default: null},
+    info: {type: String, default: null}
 });
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
@@ -57,7 +57,7 @@ app.get('/data/memo', function(req, res){
                 for (var i = 0; i < memos.length; i ++){
                     memodata.push(memos[i].data);
                 }
-                var obj = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: memodata };
+                var obj = { type: "MEMO", msg: 'RESPONSE_MEMO_ALL', data: memodata };
                 res.send(JSON.stringify(obj));
             });
             break;
@@ -81,23 +81,20 @@ app.get('/data/memo', function(req, res){
     }
 });
 
+/* Mongo Calendar */
 app.get('/data/calendar', function(req, res){
     var client_obj = req.query;
     switch (client_obj.msg) {
         case "REQUEST_CALENDAR_ALL": // Semd All data of Memo
-            var calendardata = [];
             Calendar.find(function (err, calendars) {
                 if(err) console.log(err);
-                for (var i = 0; i < Calendar.length; i ++){
-                    calendardata.push(calendars[i]);
-                }
-                var obj = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: calendardata };
+                var obj = { type: "MEMO", msg: 'RESPONSE_CALENDAR_ALL', data: calendars };
                 res.send(JSON.stringify(obj));
             });
             break;
         case "REQUEST_CALENDAR_ADD": // Adding one to mongo
-            var newCalendar = new Calendar({title: client_obj.title, start: client_obj.start
-                                        , end: client_obj.end, info: client_obj.info});
+            var newCalendar = new Calendar({title: client_obj.data.title, start: client_obj.data.start
+                                        , end: client_obj.data.end, info: client_obj.data.info});
             newCalendar.save(function (err) {
                 if(err) console.log(err);
                 console.log("save calendar");
