@@ -37,9 +37,10 @@ var memoSchema = mongoose.Schema({
     created: {type: Date, default: Date.now}
 });
 var calendarSchema = mongoose.Schema({
-    id: String,
-    data: String,
-    created: {type: Date, default: Date.now}
+    title: String,
+    start: String,
+    end: String,
+    info: String
 });
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
@@ -69,10 +70,51 @@ app.get('/data/memo', function(req, res){
             break;
         case "REQUEST_MEMO_DEL":
             //var newMsg = new Memo({data: client_obj.data});
-
             Memo.remove({data: client_obj.data}, function (err) {
                 if(err) console.log(err);
                 console.log("del memo");
+            });
+            break;
+        default:
+            return
+            break;
+    }
+});
+
+app.get('/data/calendar', function(req, res){
+    var client_obj = req.query;
+    switch (client_obj.msg) {
+        case "REQUEST_CALENDAR_ALL": // Semd All data of Memo
+            var calendardata = [];
+            Calendar.find(function (err, calendars) {
+                if(err) console.log(err);
+                for (var i = 0; i < Calendar.length; i ++){
+                    calendardata.push(calendars[i]);
+                }
+                var obj = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: calendardata };
+                res.send(JSON.stringify(obj));
+            });
+            break;
+        case "REQUEST_CALENDAR_ADD": // Adding one to mongo
+            var newCalendar = new Calendar({title: client_obj.title, start: client_obj.start
+                                        , end: client_obj.end, info: client_obj.info});
+            newCalendar.save(function (err) {
+                if(err) console.log(err);
+                console.log("save calendar");
+            });
+            break;
+        case "REQUEST_CALENDAR_DEL":
+            //var newMsg = new Memo({data: client_obj.data});
+            Calendar.remove({title: client_obj.title, start: client_obj.start
+                    , end: client_obj.end, info: client_obj.info}, function (err) {
+                if(err) console.log(err);
+                console.log("del calendar");
+            });
+            break;
+        case "REQUEST_CALENDAR_UPDATE":
+            Calendar.remove({data: client_obj.data}, function (err) {
+                if(err) console.log(err);
+                console.log("update calendar");
             });
             break;
         default:

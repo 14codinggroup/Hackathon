@@ -32,8 +32,8 @@ function return_index() {
 }
 
 
-function LoadEvents() {
-    var requsetMsg = {type: 'CALENDER', msg: 'REQUEST_CALENDER_GET', data: ''};
+function LoadCalendar() {
+    var requsetMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDER_ALL', data: ''};
     var savedEvents = new Array();
     $.get('http://localhost:3000/data/calendar', requsetMsg, function (obj) {
         savedEvents = JSON.parse(obj);
@@ -43,23 +43,23 @@ function LoadEvents() {
     return savedEvents;
 }
 
-function AddEvent(event) {
-    var requsetMsg = {type:'CALENDER', msg: 'REQUEST_CALENDER_ADD', data: event};
+function AddCalendar(event) {
+    var requsetMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDER_ADD', data: event};
     $.get('http://localhost:3000/data/calendar', requsetMsg, function (obj) {
         console.log('Request AddEvent');
     });
 }
 
-function DeleteEvent(event) {
-    var requsetMsg = {type:'CALENDER', msg: 'REQUEST_CALENDER_DELETE', data: event};
+function DelCalendar(event) {
+    var requsetMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDER_DEL', data: event};
     $.get('http://localhost:3000/data/calendar', requsetMsg, function (obj) {
         console.log('Request AddEvent');
     });
 }
 
-function UpdateEvent(oldEvent, updateInfo) {
+function UpdateCalendar(oldEvent, updateInfo) {
     var sendData = {'oldEvent': oldEvent, 'updateInfo': updateInfo};
-    var requsetMsg = {type:'CALENDER', msg: 'REQUEST_CALENDER_UPDATE', data: sendData};
+    var requsetMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDER_UPDATE', data: sendData};
     $.get('http://localhost:3000/data/calendar', requsetMsg, function (obj) {
         console.log('Request DeleteEvent');
     });
