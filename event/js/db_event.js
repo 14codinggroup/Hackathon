@@ -43,35 +43,35 @@ function LoadEvent(){
                 title: "지스타 2016",
                 start: "2016-11-17",
                 end: "2016-11-20",
-                img: "public/resource/event/event1.png",
+                img: "../public/resource/event/event1.png",
                 url: "http://www.gstar.or.kr/"
             },
             {
                 title: "2016 서울사진축제",
                 start: "2016-11-01",
                 end: "2016-11-30",
-                img: "public/resource/event/event2.png",
+                img: "../public/resource/event/event2.png",
                 url: "http://www.seoulphotofestival.com/"
             },
             {
                 title: "파주 장단콩 축제",
                 start: "2016-11-18",
                 end: "2016-11-20",
-                img: "public/resource/event/event3.png",
+                img: "../public/resource/event/event3.png",
                 url: "https://tour.paju.go.kr/user/tour/main/index.do"
             },
             {
                 title: "2016시민예술축전",
                 start: "2016-10-02",
                 end: "2016-12-18",
-                img: "public/resource/event/event4.png",
+                img: "../public/resource/event/event4.png",
                 url: "http://cafe.naver.com/artsforallseoul"
             },
             {
                 title: "2016 서울빛초롱축제",
                 start: "2016-11-04",
                 end: "2016-11-20",
-                img: "public/resource/event/event5.png",
+                img: "../public/resource/event/event5.png",
                 url: "http://www.seoullantern.com/html/"
             }
         ];
@@ -90,9 +90,9 @@ function setSlides() {
     var elements = '';
     console.log(eventList);
     for(var i=0;i<eventList.length;i++) {
-        elements += '<div class="swiper-slide"><a target="_blank" href="' + eventList[i].url + '"><img src=\"'+eventList[i].img +'"/></a>';
+        elements += '<div class="swiper-slide"><div class="swiper-slide-background"><a target="_blank" href="' + eventList[i].url + '"><img class="sourceimg" src=\"'+eventList[i].img +'"/></a>';
 //      elements += '<br/><br/><p>'+ eventList[i].title+'</p>';
-        elements += '</div>';
+        elements += '</div></div>';
         console.log('['+i+']',eventList[i].title);
     }
     document.getElementById('wrapper').innerHTML = elements;
