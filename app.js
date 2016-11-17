@@ -43,19 +43,18 @@ var calendarSchema = mongoose.Schema({
     info: {type: String, default: ""}
 });
 var eventSchema = mongoose.Schema({
-    title: String,
     start: String,
     end: String,
-    info: String,
     img: String,
     url: String
 });
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
-var Event = mongoose.model('Event_msg', memoSchema);
+var Event = mongoose.model('Event_msg', eventSchema);
 
 
 /* Mongo Act */
+/* Mongo Memo */
 app.get('/data/memo', function(req, res){
     var client_obj = req.query;
     switch (client_obj.msg) {
@@ -133,16 +132,28 @@ app.get('/data/calendar', function(req, res){
 });
 app.get('/data/event', function(req, res){
     var client_obj = req.query;
+    console.log(client_obj);
     switch (client_obj.msg) {
         case "REQUEST_EVENT_ALL": // Semd All data of Memo
             var eventdata = [];
             Event.find(function (err, events) {
                 if(err) console.log(err);
                 for (var i = 0; i < events.length; i ++){
-                    eventdata.push(events[i].data);
+                    eventdata.push(events[i]);
                 }
-                var obj = { type: "MEMO", msg: 'RESPONSE_MEMO_ALL', data: eventdata };
+                console.log(eventdata);
+                var obj = { type: "DATA", msg: 'RESPONSE_EVENT_ALL', data: eventdata };
                 res.send(JSON.stringify(obj));
+            });
+            break;
+        case "REQUEST_EVENT_ADD": // Adding one to mongo
+            console.log("A");
+            var newEvent = new Event({start: client_obj.data.start, end: client_obj.data.end
+                , img: client_obj.data.img, url: client_obj.data.url});
+            console.log(client_obj.data);
+            newEvent.save(function (err) {
+                if(err) console.log(err);
+                console.log("save event");
             });
             break;
     }
