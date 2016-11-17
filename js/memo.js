@@ -68,7 +68,7 @@ var position = {};
 
 function init() {
     LoadMemo();
-    canvas.addEventListener("mousedown", mouseDownListener, false);
+    canvas.addEventListener("touchstart", mouseDownListener, false);
     setInterval(Loop, 1000/fps);
 
 
