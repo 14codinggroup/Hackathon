@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="event/css/swiper.min.css">
+    <script src="event/js/swiper.min.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/data_base.js"></script>
     <script type="text/javascript" src="js/basic_ui.js"></script>
@@ -180,18 +181,32 @@
             float: right;
         }
         .swiper-container {
-            width: 100%;
-            height: 100%;
+            top: 20%;
+            background-color: #fff;
+        }
+        .swiper-wrapper{
+
+        }
+        .swiper-slide .swiper-slide-background{
+            box-shadow: 0 2px 5px rgba(11, 12, 12, 0.16);
+            height:600px;
+            width:400px;
+            background: #000;
         }
         .swiper-slide {
-            text-align: center;
-            font-size: 18px;
+            float: inherit;
             background: #fff;
+            text-align: center;
+            vertical-align: center;
+            font-size: 18px;
             /* Center slide text vertically */
             display: -webkit-box;
             display: -ms-flexbox;
             display: -webkit-flex;
             display: flex;
+
+
+
             -webkit-box-pack: center;
             -ms-flex-pack: center;
             -webkit-justify-content: center;
@@ -200,6 +215,18 @@
             -ms-flex-align: center;
             -webkit-align-items: center;
             align-items: center;
+        }
+        .swiper-slide .sourceimg{
+            margin: auto;
+            max-height: 100%;
+            max-width: 100%;
+
+
+            text-align: center;
+            vertical-align: center;
+        }
+        .bot{
+            margin-top: 3%;
         }
 
     </style>
@@ -239,13 +266,12 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper" id="wrapper">
                     <script>
-                        setSlides();
+                     //   setSlides();
                     </script>
                 </div>
+                <div class="bot"></div>
                 <div class="swiper-pagination"></div>
             </div>
-
-            <script src="event/js/swiper.min.js"></script>
 
             <script>
 
