@@ -11,7 +11,15 @@
     <script src="form.js"></script>
     <script>
         (function () {
-            var savedEvents = LoadCalendar();
+            savedEvents = new Array();
+            var work = 0;
+            while(savedEvents.length === 0) {
+                var savedEvents = LoadCalendar();
+                work++;
+                if(work == 100){
+                    break;
+                }
+            }
             console.log(savedEvents);
         }());
     </script>
