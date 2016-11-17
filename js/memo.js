@@ -171,7 +171,7 @@ function Loop(){
 function update(){
     //Set Random Coloring
     ctx.fillStyle = 'rgba(' + 255 + ','
-        + 102 + ',' + 153 + ',' + 0.1 + ')';
+        + 102 + ',' + 153 + ',' + 0.2 + ')';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
