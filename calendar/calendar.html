@@ -10,10 +10,10 @@
     <script src="fullcalendar.js"></script>
     <script src="form.js"></script>
     <script>
-        var savedEvents = LoadCalendar();
-        console.log(savedEvents);
-        $(document).ready(function () {
 
+        $(document).ready(function () {
+            var savedEvents = LoadCalendar();
+            console.log(savedEvents);
 
             $('#calendar').fullCalendar({
                 customButtons: {

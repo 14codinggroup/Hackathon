@@ -53,11 +53,7 @@
     <script>
         (function () {
             document.getElementById("start").value = selectedEvent["start"];
-            if(selectedEvent["end"] != undefined) {
-                document.getElementById("end").value = selectedEvent["end"];
-            }else{
-                document.getElementById("end").value = selectedEvent["start"];
-            }
+            document.getElementById("end").value = selectedEvent["end"];
             document.getElementById("title").value = selectedEvent["title"];
             if(selectedEvent["info"] != undefined) {
                 document.getElementById("info").value = selectedEvent["info"];

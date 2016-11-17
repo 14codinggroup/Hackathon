@@ -27,6 +27,26 @@ function addSchedule() {
     document.getElementById("info").value = null;
 }
 
+function updateButtonClick(oldEvent) {
+    var event = new Array();
+    event['start'] = document.getElementById("start").value;
+    event['end'] = document.getElementById("end").value;
+    event['title'] = document.getElementById("title").value;
+    event['info'] = document.getElementById("info").value;
+    if(!event['start']){
+        alert("start는 필수입니다.")
+        document.getElementById("start").focus();
+        return false;
+    }
+    if(!event['title']){
+        alert("title은 필수입니다.");
+        document.getElementById("title").focus();
+        return false;
+    }
+
+    UpdateCalendar(oldEvent,event);
+}
+
 function return_index() {
     window.location.href="calendar.html";
 }
