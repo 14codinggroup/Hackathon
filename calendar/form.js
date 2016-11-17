@@ -30,30 +30,6 @@ function addSchedule() {
     document.getElementById("info").value = null;
 }
 
-function updateButtonClick(oldEvent) {
-    var event = new Array();
-    event['start'] = document.getElementById("start").value;
-    event['end'] = document.getElementById("end").value;
-    event['title'] = document.getElementById("title").value;
-    event['info'] = document.getElementById("info").value;
-    if(!event['start']){
-        alert("start는 필수입니다.")
-        document.getElementById("start").focus();
-        return false;
-    }
-    if(!event['title']){
-        alert("title은 필수입니다.");
-        document.getElementById("title").focus();
-        return false;
-    }
-
-    UpdateCalendar(oldEvent,event);
-}
-
-function return_index() {
-    window.location.href="calendar.html";
-}
-
 function deleteSchedule(event) {
     DelCalendar(event);
     alert("일정 '"+event.title+"'가 삭제되었습니다.");
@@ -63,34 +39,32 @@ function deleteSchedule(event) {
 function updateSchedule(oldEvent) {
     console.log(oldEvent);
     var event = new Array();
-    event['start'] = document.getElementById("start").value;
-    event['end'] = document.getElementById("end").value;
-    event['title'] = document.getElementById("title").value;
-    event['info'] = document.getElementById("info").value;
     if(!event['start']){
         alert("start는 필수입니다.")
         document.getElementById("start").focus();
         return false;
-    }
-    if(!event['end']){
-        event['end'] = event['start'];
     }
     if(!event['title']){
         alert("title은 필수입니다.");
         document.getElementById("title").focus();
         return false;
     }
+    event['start'] = document.getElementById("start").value;
+    event['end'] = document.getElementById("end").value;
+    event['title'] = document.getElementById("title").value;
+    event['info'] = document.getElementById("info").value;
 
     UpdateCalendar(oldEvent, event);
-    alert("일정 '"+title+"'가 수정되었습니다.");
-    document.getElementById("start").value = null;
-    document.getElementById("end").value = null;
-    document.getElementById("title").value = null;
-    document.getElementById("info").value = null;
+    alert("일정이 수정되었습니다.");
     return_index()
 }
 
-var dbLink = 'http://localhost:3000/data/calendar';
+function return_index() {
+    window.location.href="calendar.html";
+}
+
+
+var dbLink = 'http://121.135.150.5:12111/data/calendar';
 
 var savedEvents = new Array();
 function LoadCalendar() {
