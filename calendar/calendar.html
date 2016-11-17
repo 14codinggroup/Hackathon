@@ -60,7 +60,7 @@
 
                 eventClick: function (calEvent) {
                     console.log(calEvent);
-                    var dummy_json = {title: calEvent.title, start: calEvent.start, end: calEvent.end, info: calEvent.info};
+                    var dummy_json = {title: calEvent.title, start: calEvent.start, end: calEvent.end};
                     window.location.href = "updateSchedule.html?Events="+JSON.stringify(dummy_json);
                 }
             });
