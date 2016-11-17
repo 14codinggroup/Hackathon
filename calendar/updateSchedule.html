@@ -51,26 +51,84 @@
             setValue();
         }
     </script>
+    <style>
+        .sb{
+            background-color: #f5f5f5;
+            margin: 0;
+            height: 4.1em;
+            padding: 0.6em 0.6em 0.6em 0.6em;
+            border: 3px rgba(79, 82, 88, 0.25);
+            color: #333;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+            border-radius: 4px;
+        }
+        .sb :hover{
+            color: #333333;
+            text-decoration: none;
+            background-position: 0 -15px;
+            -webkit-transition: background-position 0.1s linear;
+            -moz-transition: background-position 0.1s linear;
+            -o-transition: background-position 0.1s linear;
+            transition: background-position 0.1s linear;
+        }
+
+        .MainContent a{
+            font-size: 20px;
+        }
+
+        .date, .content{
+            padding:5px;
+            width:10%;
+        }
+        .start, .end{
+            margin-top:3px;
+            height: 30%;
+        }
+        .content{
+            /**/
+        }
+
+        hr{
+            border: 0;
+            height: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .textst a, .texted a{
+            margin: 2px;
+            background-color: lightpink;
+        }
+
+    </style>
 </head>
 <body>
-    <div id="MainContent">
+<div id="MainContent">
     <form action = "#" id="form_id" method = "post">
 
 
-        <b>날짜</b></br></br>
-        시작 날: <input type="date" id="start"/><br><br>
-        끝 날: <input type="date" id="end"/><br><br>
-
+        <div class="date"><a><i class="fa fa-clock-o" aria-hidden="true"></i>날짜</a></div><hr>
+        <br>
+        <div id="textst"><a>시작 날</a><br>
+            <input type="date" id="start" class="start"/></div>
+        <br><br>
+        <div id="texted"><a>끝 날</a><br>
+            <input type="date" id="end" class="end"/></div>
+        <br><br>
         <br>
 
-        <b>내용</b></br></br>
-        제목: <input type="text" id="title"/><br><br>
-        세부 내용: <textarea id="info" cols="50" rows="5"></textarea><br><br>
+        <div class="content"><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>내용</a></div><hr>
+        <br>
+        <div id=title"><a>제목</a></div> <input type="text" id="title"/>
+        <br>
+        <br>
+        <div id="morecontent"><a>세부 내용</a></div> <textarea id="info" cols="50" rows="5"></textarea>
+        <br>
+        <br>
 
-        <button type="button" onclick="updateSchedule(selectedEvent)" id="updateScheduleButton">일정 변경</button>
-        <button type="button" onclick="deleteSchedule(selectedEvent)" id="deleteScheduleButton">일정 삭제</button>
-        <button type="button" onclick="return_index()" id="returnWithoutChange">돌아가기</button>
+        <button type="button" class="sb" onclick="updateSchedule(selectedEvent)" id="updateScheduleButton">일정 변경</button>
+        <button type="button" class="sb" onclick="deleteSchedule(selectedEvent)" id="deleteScheduleButton">일정 삭제</button>
+        <button type="button" class="sb" onclick="return_index()" id="returnWithoutChange">돌아가기</button>
     </form>
-    </div>
+</div>
 </body>
 </html>
