@@ -80,6 +80,34 @@ app.get('/data/memo', function(req, res){
                 if(err) console.log(err);
                 console.log("save memo");
             });
+            Token.find(function (err, tokens) {
+                if(err) console.log(err);
+                for (var i = 0; i < tokens.length; i ++){
+                    var mytoken = tokens[i].token;
+
+                    var message = {
+                        to: mytoken, // required fill with device token or topics
+
+                        data: {
+                            your_custom_data_key: 'your_custom_data_value'
+                        },
+                        notification: {
+                            title: 'Family Hub 알림',
+                            body: '새로운 메모가 등록되었습니다.'
+                        }
+                    };
+
+                    //callback style
+                    fcm.send(message, function(err, response){
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log("Successfully sent with response: ", response);
+                        }
+                    });
+
+                }
+            });
             break;
         case "REQUEST_MEMO_DEL":
             //var newMsg = new Memo({data: client_obj.data});
@@ -113,6 +141,14 @@ app.get('/data/calendar', function(req, res){
                 if(err) console.log(err);
                 console.log("save calendar");
             });
+
+            break;
+        case "REQUEST_CALENDAR_ONE": // Adding one to mongo
+            var newCalendar = new Calendar({title: client_obj.data.title, start: client_obj.data.start
+                , end: client_obj.data.end});
+            console.log(client_obj.data);
+            res.send(JSON.stringify(obj));
+
             break;
         case "REQUEST_CALENDAR_DEL":
             //var newMsg = new Memo({data: client_obj.data});
@@ -173,34 +209,36 @@ var FCM = require('fcm-node');
 
 var serverKey = 'AIzaSyDIG6zqCH8j82fpHjHfzqtniy2dXTkfHUg';
 var fcm = new FCM(serverKey);
-Token.find(function (err, tokens) {
-    if(err) console.log(err);
-    for (var i = 0; i < tokens.length; i ++){
-        var mytoken = tokens[i].token;
+/*
+function SendNotification(){
+    Token.find(function (err, tokens) {
+        if(err) console.log(err);
+        for (var i = 0; i < tokens.length; i ++){
+            var mytoken = tokens[i].token;
 
-        var message = {
-            to: mytoken, // required fill with device token or topics
+            var message = {
+                to: mytoken, // required fill with device token or topics
 
-            data: {
-                your_custom_data_key: 'your_custom_data_value'
-            },
-            notification: {
-                title: 'Title of your push notification',
-                body: 'Body of your push notification'
-            }
-        };
+                data: {
+                    your_custom_data_key: 'your_custom_data_value'
+                },
+                notification: {
+                    title: 'Family Hub 알림',
+                    body: '새로운 메모가 등록되었습니다.'
+                }
+            };
 
-//callback style
-        fcm.send(message, function(err, response){
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("Successfully sent with response: ", response);
-            }
-        });
+    //callback style
+            fcm.send(message, function(err, response){
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Successfully sent with response: ", response);
+                }
+            });
 
-    }
-});
-
-
+        }
+    });
+}
+*/
 
