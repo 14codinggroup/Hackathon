@@ -51,7 +51,6 @@ app.get('/data/memo', function(req, res){
     var client_obj = req.query;
     switch (client_obj.msg) {
         case "REQUEST_MEMO_ALL": // Semd All data of Memo
-            console.log("A");
             var memodata = [];
             Memo.find(function (err, memos) {
                 if(err) console.log(err);

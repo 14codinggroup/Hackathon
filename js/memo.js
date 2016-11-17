@@ -5,11 +5,12 @@ var m_width;
 
 var myAddress = 'http://121.135.150.5:12111/data/memo';
 
-function resize_canvas() {
+function resize_canvas(height) {
     canvas = document.getElementById("MemoCanvas");
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = document.getElementById('MemoBtnContainer').clientWidth;
-    ctx.canvas.height = document.getElementById('LobbyContent').clientHeight * 9 / 10;
+    ctx.canvas.height = height;
+
     m_width = ctx.canvas.width * 23 / 100;
 
     //start loop
@@ -19,6 +20,9 @@ function resize_canvas() {
 function DestroyMemo(){
     memo_array = [];
     document.getElementById('MemoPage').style.display = 'none';
+    var refreshIntervalId = setInterval(Loop, 1000/fps);
+    clearInterval(refreshIntervalId);
+
 }
 
 var memo_array = new Array();
@@ -66,6 +70,8 @@ function init() {
     LoadMemo();
     canvas.addEventListener("mousedown", mouseDownListener, false);
     setInterval(Loop, 1000/fps);
+
+
 }
 function LoadMemo() {
     var client_json = { type: "MEMO", msg: 'REQUEST_MEMO_ALL', data: "" };

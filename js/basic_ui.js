@@ -1,46 +1,34 @@
 
-function onclick_memo(){
-    //lobby ui --> memo ui
-    document.getElementById('MiddleContent').style.display = 'none';
-    document.getElementById('FooterContent').style.display = 'none';
-    document.getElementById('MemoPage').style.display = 'block';
-    resize_canvas();
+function onclick_calendar(){
+    MoveOther();
+    document.getElementById('LobbyContent').style.display = 'block';
 }
 
+function onclick_memo(){
+    document.getElementById('LobbyContent').style.display = 'block';
+    var height = document.getElementById('LobbyContent').clientHeight * 8 / 10;
+    document.getElementById('LobbyContent').style.display = 'none';
+    MoveOther();
+    document.getElementById('MemoPage').style.display = 'block';
+
+    resize_canvas(height);
+}
 
 function onclick_event(){
-    //lobby ui --> memo ui
-    document.getElementById('MiddleContent').style.display = 'none';
-    document.getElementById('FooterContent').style.display = 'none';
+    MoveOther();
     document.getElementById('EventList').style.display = 'block';
     //alert("A");
     event_init();
 }
 
 function onclick_header(){
-    document.getElementById('MiddleContent').style.display = 'block';
-    document.getElementById('FooterContent').style.display = 'block';
-    DestroyMemo();
-    //DestroyCalendar();
-    //DestryEvent();
+
 }
 
-function draw() {
-    // ui resize
-    //var w = document.getElementById('MemoContent').clientWidth;
-    //document.getElementById('MemoContent').style.height = w + "px";
-    //w = document.getElementById('EventContent').clientWidth;
-    //document.getElementById('EventContent').style.height = w + "px";
 
-    var w = document.getElementById('MemoPicture').clientHeight;
-    document.getElementById('MemoPicture').style.width = w + "px";
-    var all = document.getElementById('FooterContent').clientWidth;
-    document.getElementById('MemoText').style.width = (all - w) * 90 / 100 + "px";
-    document.getElementById('MemoText').style.height = w + "px";
-    document.getElementById('MemoText').style.paddingTop = (w / 2) * 60 / 100 + "px";
-
-    document.getElementById('EventPicture').style.width = w + "px";
-    document.getElementById('EventText').style.width = (all - w) * 90 / 100 + "px";
-    document.getElementById('EventText').style.height = w + "px";
-    document.getElementById('EventText').style.paddingTop = (w / 2) * 20 / 100 + "px";
+function MoveOther(){
+    document.getElementById('LobbyContent').style.display = 'none';
+    document.getElementById('MemoPage').style.display = 'none';
+    document.getElementById('EventInfo').style.display = 'none';
+    DestroyMemo();
 }

@@ -22,6 +22,7 @@
             }
             else {
                 var work = 0;
+
                 while (savedEvents.length === 0) {
                     var savedEvents = LoadCalendar();
                     work++;
@@ -30,6 +31,7 @@
                         break;
                     }
                 }
+
             }
             console.log(savedEvents);
             return savedEvents;
