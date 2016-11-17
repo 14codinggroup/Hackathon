@@ -67,20 +67,20 @@ function return_index() {
 
 var dbLink = 'http://121.135.150.5:12111/data/calendar';
 
-var savedEvents = new Array();
-function LoadCalendar() {
+var loadEvents = new Array();
+function LoadCalendar(callback) {
 
-    savedEvents = [];
+    loadEvents = [];
     var k;
     console.log('load calendar');
     var requestMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDAR_ALL', data: ''};
 
     $.get(dbLink, requestMsg, function (obj) {
         var temp = JSON.parse(obj);
-        savedEvents = temp.data;
+        loadEvents = temp.data;
         //console.log(savedEvents);
+        callback();
      });
-    return savedEvents;
 }
 
 var oneTuple = new Array();

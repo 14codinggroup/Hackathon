@@ -10,62 +10,50 @@
     <script src="fullcalendar.js"></script>
     <script src="form.js"></script>
     <script>
-        var selfDebug = false;
+        var savedEvents;
 
-        var savedEvents = (function () {
-            var savedEvents = new Array();
-
-            if(selfDebug){
-                savedEvents = {
-                    url: 'events.json'
-                }
-            }
-            else {
-                var work = 0;
-
-                while (savedEvents.length === 0) {
-                    var savedEvents = LoadCalendar();
-                    work++;
-                    if (work == 30) {
-                        //alert('캘린더 로드 성공');
-                        break;
-                    }
-                }
-
-            }
+        function setSavedEvents() {
+            savedEvents = loadEvents;
             console.log(savedEvents);
-            return savedEvents;
+            $(document).ready(function () {
+
+
+                $('#calendar').fullCalendar({
+                    customButtons: {
+                        addScheduleButton: {
+                            text: 'add schedule',
+                            click: function () {
+                                window.location.href = "addSchedule.html";
+                            }
+                        }
+                    },
+                    header: {
+                        left: 'prev,next addScheduleButton',
+                        center: 'title',
+                    },
+
+                    editable: false,
+                    eventLimit: true,
+                    events: savedEvents,
+
+                    eventClick: function (calEvent) {
+                        console.log(calEvent);
+                        var dummy_json = {title: calEvent.title, start: calEvent.start, end: calEvent.end};
+                        window.location.href = "updateSchedule.html?Events="+JSON.stringify(dummy_json);
+                    }
+                });
+
+            });
+        }
+        
+        (function () {
+            var savedEvents = new Array();
+            LoadCalendar(function () {
+                setSavedEvents();
+            });
         }());
 
-        $(document).ready(function () {
 
-
-            $('#calendar').fullCalendar({
-                customButtons: {
-                    addScheduleButton: {
-                        text: 'add schedule',
-                        click: function () {
-                            window.location.href = "addSchedule.html";
-                        }
-                    }
-                },
-                header: {
-                    left: 'prev,next addScheduleButton',
-                    center: 'title',
-                },
-
-                editable: false,
-                eventLimit: true,
-                events: savedEvents,
-
-                eventClick: function (calEvent) {
-                    console.log(calEvent);
-                    var dummy_json = {title: calEvent.title, start: calEvent.start, end: calEvent.end};
-                    window.location.href = "updateSchedule.html?Events="+JSON.stringify(dummy_json);
-                }
-            });
-
-        });
     </script>
     <style>
 
