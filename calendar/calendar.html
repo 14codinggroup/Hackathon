@@ -28,13 +28,14 @@
                         }
                     },
                     header: {
-                        left: 'prev,next addScheduleButton',
+                        left: 'addScheduleButton',
                         center: 'title',
                     },
 
                     editable: false,
                     eventLimit: true,
                     events: savedEvents,
+                    allDayDefault: true,
 
                     eventClick: function (calEvent) {
                         console.log(calEvent);
