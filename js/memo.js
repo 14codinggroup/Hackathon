@@ -3,7 +3,7 @@ var ctx;
 
 var m_width;
 
-var myAddress = 'http://localhost:3000/data/memo';
+var myAddress = 'http://121.135.150.5:12111/data/memo';
 
 function resize_canvas() {
     canvas = document.getElementById("MemoCanvas");
