@@ -26,7 +26,12 @@
                     query_string[pair[0]].push(decodeURIComponent(pair[1]));
                 }
             }
-            return JSON.parse(query_string["Events"]);
+            var event = JSON.parse(query_string["Events"]);
+            for(var i=0;i<30;i++) {
+                var retValue = LoadOneCalendar(event);
+            }
+
+            return retValue
         }());
     </script>
 </head>

@@ -83,7 +83,17 @@ function LoadCalendar() {
     return savedEvents;
 }
 
-
+var oneTuple
+function LoadOneCalendar(event) {
+    var requestMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDAR_ONE', data: event};
+    
+    $.get(dbLink, requestMsg, function (obj) {
+        var temp = JSON.parse(obj);
+        oneTuple = temp.data;
+        console.log(oneTuple);
+    });
+    return oneTuple;
+}
 
 function AddCalendar(event) {
     var client_json = {title: event['title'], start: event['start'],
