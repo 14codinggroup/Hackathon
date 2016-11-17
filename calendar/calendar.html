@@ -10,20 +10,30 @@
     <script src="fullcalendar.js"></script>
     <script src="form.js"></script>
     <script>
-        (function () {
-            savedEvents = new Array();
-            var work = 0;
-            while(savedEvents.length === 0) {
-                var savedEvents = LoadCalendar();
-                work++;
-                if(work == 100){
-                    break;
+        var selfDebug = false;
+
+        var savedEvents = (function () {
+            var savedEvents = new Array();
+
+            if(selfDebug){
+                savedEvents = {
+                    url: 'events.json'
+                }
+            }
+            else {
+                var work = 0;
+                while (savedEvents.length === 0) {
+                    var savedEvents = LoadCalendar();
+                    work++;
+                    if (work == 100) {
+                        break;
+                    }
                 }
             }
             console.log(savedEvents);
+            return savedEvents;
         }());
-    </script>
-    <script>
+
         $(document).ready(function () {
 
 
