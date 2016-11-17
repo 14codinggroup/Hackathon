@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>event list</title>
     <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery.js"></script>
     <script src="js/db_event.js"></script>
     <style>
         html, body {
@@ -44,12 +45,10 @@
 </head>
 <body>
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="http://www.gstar.or.kr/"><img src="../public/resource/event/event1.png"/></br><p></p></a></div>
-            <div class="swiper-slide"><img src="../public/resource/event/event2.png"/></div>
-            <div class="swiper-slide"><img src="../public/resource/event/event3.png"/></div>
-            <div class="swiper-slide"><img src="../public/resource/event/event4.png"/></div>
-            <div class="swiper-slide"><img src="../public/resource/event/event5.png"/></div>
+        <div class="swiper-wrapper" id="wrapper">
+            <script>
+                setSlides();
+            </script>
         </div>
         <div class="swiper-pagination"></div>
     </div>
