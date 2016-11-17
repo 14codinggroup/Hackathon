@@ -25,14 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        mWebview  = new WebView(this);
-        mWebview.setWebViewClient(new WebViewClient());
-        mWebview.getSettings().setJavaScriptEnabled(true); // enable javascript
-
-        mWebview .loadUrl("http://121.135.150.5:12111/");
-        setContentView(mWebview );
-
         String token = FirebaseInstanceId.getInstance().getToken();
 
         MongoClient mongoClient = null;
@@ -47,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
             //user 테이블에 데이터삽입
             DBObject doc = new BasicDBObject();
-            doc.put("token", token);
-            //coll.update(doc, doc, true, false);
+            doc.put("token", "A");
+
 
             coll.insert(doc);
 
@@ -69,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
             }
         );
         */
+        mWebview  = new WebView(this);
+        mWebview.setWebViewClient(new WebViewClient());
+        mWebview.getSettings().setJavaScriptEnabled(true); // enable javascript
+
+        mWebview .loadUrl("http://121.135.150.5:12111/");
+        setContentView(mWebview);
     }
 }
