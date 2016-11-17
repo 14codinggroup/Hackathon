@@ -83,16 +83,32 @@ function LoadCalendar() {
     return savedEvents;
 }
 
-var oneTuple
-function LoadOneCalendar(event) {
-    var requestMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDAR_ONE', data: event};
-    
+var oneTuple = new Array();
+var filledOneTuple;
+
+function LoadOneCalendar(event,callback) {
+
+    oneTuple = [];
+    var event_json = {title: event['title'], start: event['start'], end: event['end']};
+    var requestMsg = {type: 'CALENDAR', msg: 'REQUEST_CALENDAR_ONE', data: event_json};
+
     $.get(dbLink, requestMsg, function (obj) {
-        var temp = JSON.parse(obj);
-        oneTuple = temp.data;
+
+        var $temp = JSON.parse(obj);
+        oneTuple = $temp.data;
         console.log(oneTuple);
+        callback();
     });
-    return oneTuple;
+
+
+}
+
+function oneTupleWait() {
+    if(filledOneTuple){
+        return false;
+    }else{
+        setTimeout(oneTupleWait, 250);
+    }
 }
 
 function AddCalendar(event) {
@@ -128,5 +144,7 @@ function UpdateCalendar(oldEvent, updateInfo) {
         console.log('Request UpdateEvent');
     });
 }
+
+
 
 

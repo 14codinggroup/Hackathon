@@ -6,7 +6,9 @@
     <script src="lib/jquery.min.js"></script>
     <script src="form.js"></script>
     <script>
-        var selectedEvent = (function () {
+        var selectedEvent;
+
+        (function queryURL() {
             // This function is anonymous, is executed immediately and
             // the return value is assigned to QueryString!
             var query_string = {};
@@ -27,12 +29,27 @@
                 }
             }
             var event = JSON.parse(query_string["Events"]);
-            for(var i=0;i<30;i++) {
-                var retValue = LoadOneCalendar(event);
-            }
-            console.log('[retValue]', retValue);
-            return retValue
+
+            LoadOneCalendar(event, function () {
+                setSelectEvent();
+            });
+
         }());
+
+        function setValue() {
+            console.log('[initUpdate]', selectedEvent);
+            document.getElementById("start").value = selectedEvent["start"];
+            document.getElementById("end").value = selectedEvent["end"];
+            document.getElementById("title").value = selectedEvent["title"];
+            if(selectedEvent["info"] != undefined) {
+                document.getElementById("info").value = selectedEvent["info"];
+            }
+        };
+
+        function setSelectEvent() {
+            selectedEvent = oneTuple[0];
+            setValue();
+        }
     </script>
 </head>
 <body>
@@ -55,16 +72,5 @@
         <button type="button" onclick="return_index()" id="returnWithoutChange">돌아가기</button>
     </form>
     </div>
-    <script>
-        (function () {
-            console.log('[initUpdate]', selectedEvent);
-            document.getElementById("start").value = selectedEvent["start"];
-            document.getElementById("end").value = selectedEvent["end"];
-            document.getElementById("title").value = selectedEvent["title"];
-            if(selectedEvent["info"] != undefined) {
-                document.getElementById("info").value = selectedEvent["info"];
-            }
-        }());
-    </script>
 </body>
 </html>

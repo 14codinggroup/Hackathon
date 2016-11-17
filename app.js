@@ -144,11 +144,12 @@ app.get('/data/calendar', function(req, res){
 
             break;
         case "REQUEST_CALENDAR_ONE": // Adding one to mongo
-            var newCalendar = new Calendar({title: client_obj.data.title, start: client_obj.data.start
-                , end: client_obj.data.end});
-            console.log(client_obj.data);
-            res.send(JSON.stringify(obj));
-
+            Calendar.find({title: client_obj.data.title, start: client_obj.data.start
+                , end: client_obj.data.end}, function (err, calendars) {
+                if(err) console.log(err);
+                var obj = { type: "CALENDAR", msg: 'RESPONSE_CALENDAR_ONE', data: calendars };
+                res.send(JSON.stringify(obj));
+            });
             break;
         case "REQUEST_CALENDAR_DEL":
             //var newMsg = new Memo({data: client_obj.data});
