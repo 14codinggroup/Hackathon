@@ -14,6 +14,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
@@ -44,11 +45,21 @@ public class MainActivity extends AppCompatActivity {
 
             //user 테이블에 데이터삽입
             DBObject doc = new BasicDBObject();
+
             doc.put("token", token);
 
 
-            //coll.insert(doc);
-            coll.update(doc, doc);
+
+            BasicDBObject query = new BasicDBObject("token", token);
+            DBCursor cursor = coll.find(query);
+            if(cursor.count() > 0){
+
+            }else{
+                coll.insert(doc);
+            }
+
+            //coll.update(doc, doc);
+            //Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
         }catch(Exception e){
             System.out.println(e.getMessage());
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
