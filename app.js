@@ -8,6 +8,7 @@ var express = require('express'),
 /* Binding */
 app.use('/public', express.static('public'));
 app.use('/calendar', express.static('calendar'));
+app.use('/event', express.static('event'));
 app.use('/js', express.static('js'));
 
 
@@ -159,22 +160,32 @@ app.get('/data/event', function(req, res){
     }
 });
 /* firebase */
-var gcm = require('node-gcm');
-var message = new gcm.Message();
+/*
+var FCM = require('fcm-node');
 
-message.addData('hello', 'world');
-message.addNotification('title', 'Hello');
-message.addNotification('icon', 'ic_launcher');
-message.addNotification('body', 'World');
+var serverKey = '';
+var fcm = new FCM(serverKey);
 
-var regTokens = ['a'];
-var sender = new gcm.Sender('AIzaSyDIG6zqCH8j82fpHjHfzqtniy2dXTkfHUg');
+var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
+    to: 'registration_token',
+    collapse_key: ' AIzaSyBu6AGnzC4J8owbIFAhr7xkCyDkgPh8Nb0',
 
-sender.send(message, regTokens, function (err, response) {
-    if(err) {
-        console.error(err);
+    notification: {
+        title: 'Title of your push notification',
+        body: 'Body of your push notification'
+    },
+
+    data: {  //you can send only notification or only data(or include both)
+        my_key: 'my value',
+        my_another_key: 'my another value'
+    }
+};
+
+fcm.send(message, function(err, response){
+    if (err) {
+        console.log("Something has gone wrong!");
     } else {
-        console.log(response);
+        console.log("Successfully sent with response: ", response);
     }
 });
-
+*/

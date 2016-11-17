@@ -16,7 +16,7 @@ $.get(myeventaddr, add_json, function(obj){
 */
 //서버와 연결이 반드시 필요하다.
 //서버측에서 할때는 serverSide = true 한다.
-var serverSide = false;
+var serverSide = true;
 var eventList = new Array();
 
 if(serverSide) {
@@ -77,6 +77,7 @@ else {
 */
 function setSlides() {
     var elements = '';
+    console.log(eventList);
     for(var i=0;i<eventList.length;i++) {
         elements += '<div class="swiper-slide"><a href="' + eventList[i].url + '"><img src=\"'+eventList[i].img +'"/></a>';
         elements += '<br/><br/><p>'+ eventList[i].title+'</p>';

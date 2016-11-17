@@ -78,7 +78,7 @@ function LoadCalendar() {
     $.get(dbLink, requestMsg, function (obj) {
         var temp = JSON.parse(obj);
         savedEvents = temp.data;
-        console.log(savedEvents);
+        //console.log(savedEvents);
      });
     return savedEvents;
 }

@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="event/css/swiper.min.css">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/data_base.js"></script>
     <script type="text/javascript" src="js/basic_ui.js"></script>
     <script type="text/javascript" src="js/memo.js"></script>
     <script type="text/javascript" src="js/event.js"></script>
-    <script type="text/javascript" src="js/db_event.js"></script>
+    <script type="text/javascript" src="event/js/db_event.js"></script>
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -164,12 +165,7 @@
         }
 
         /* 행사 상세정보 */
-        .EventInfo {
-            display: none;
-            margin: 0;
-            top: 10%;
-            width: 100%;
-        }
+
 
         .eventhr {
             border: 0;
@@ -177,35 +173,34 @@
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
-
-        .EventInfo .EventImage{
-            background: url('./public/resource/event_icon.jpg');
-            height: 30%;
-            padding: 20px;
-        }
-
-        .EventInfo .EventTitle{
-            background: #f4f5f6;
-            font-size: 20px;
-            font-weight: 700;
-            text-align: center;
-            margin:0;
-            padding:20px;
-            font-family: 'Lato', sans-serif;
-        }
-
-        .EventInfo .EventDescription{
-            background: transparent;
-            height: 55%;
-            font-size: 16px;
-            font-family: Raleway, sans-serif;
-            font-weight: 400;
-            background-color : #f4f5f6;
-            padding:10px;
+        .Ev {
+            height: 800px;
         }
 
         .returnEventList {
             float: right;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
         }
 
     </style>
@@ -241,25 +236,25 @@
             </div>
         </div>
 
-        <div class="EventInfo" id="EventInfo">
-            <div class = "EventImage" id="EventImage">
-                image
+        <div class="Ev">
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="wrapper">
+                    <script>
+                        setSlides();
+                    </script>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class = "EventTitle" id="EventTitle">
-                this is the title
-            </div>
-            <hr class="eventhr">
-            <div class = "EventDescription" id="EventDescription">
-                <div class="eventDate"> Thursday, 17 Nov 2016 </div>
-                <div class="eventTime"> 00:00:00 </div>
-                <hr class="eventhr">
-                <div class="eventDetail"> SOSCON </div>
-            </div>
-            <div class="returnEventList" id="returnEventList">
-                <input class='backb' id='backb' type='button' value = "<" onclick="return_event()">
-            </div>
-        </div>
 
+            <script src="event/js/swiper.min.js"></script>
+
+            <script>
+                var swiper = new Swiper('.swiper-container',{
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true
+                });
+            </script>
+        </div>
 </div>
 
 

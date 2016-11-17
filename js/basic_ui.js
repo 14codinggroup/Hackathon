@@ -16,7 +16,6 @@ function onclick_memo(){
 
 function onclick_event(){
     MoveOther();
-    document.getElementById('EventList').style.display = 'block';
     //alert("A");
     event_init();
 }
@@ -29,6 +28,5 @@ function onclick_header(){
 function MoveOther(){
     document.getElementById('LobbyContent').style.display = 'none';
     document.getElementById('MemoPage').style.display = 'none';
-    document.getElementById('EventInfo').style.display = 'none';
     DestroyMemo();
 }

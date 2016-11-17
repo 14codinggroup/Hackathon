@@ -27,5 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     apply plugin: 'com.google.gms.google-services'
     compile 'com.google.firebase:firebase-messaging:9.0.2'
+    compile 'org.mongodb:mongo-java-driver:3.2.1'
     testCompile 'junit:junit:4.12'
 }

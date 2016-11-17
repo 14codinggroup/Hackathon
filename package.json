@@ -4,6 +4,7 @@
   "privae": true,
   "dependencies": {
     "express": "~4.13.1",
+    "fcm-node": "^1.0.15",
     "firebase": "^3.6.0",
     "mongoose": "^4.6.6",
     "node-gcm": "^0.14.4",

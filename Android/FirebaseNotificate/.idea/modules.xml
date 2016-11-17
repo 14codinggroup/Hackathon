@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FirebaseNotificate.iml" filepath="$PROJECT_DIR$/FirebaseNotificate.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mongo-java-driver-3.2.1/mongo-java-driver-3.2.1.iml" filepath="$PROJECT_DIR$/mongo-java-driver-3.2.1/mongo-java-driver-3.2.1.iml" />
     </modules>
   </component>
 </project>
