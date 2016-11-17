@@ -21,3 +21,10 @@ $.get(myeventaddr, load_json, function(obj){
     console.log(event_json.data);
 });
 
+/*
+    <div class="swiper-slide">1</div>
+    <div class="swiper-slide">2</div>
+    <div class="swiper-slide">3</div>
+    <div class="swiper-slide">4</div>
+    <div class="swiper-slide">5</div>
+*/
