@@ -5,14 +5,13 @@ function addDiv(id, date, url, title) {
     var str =
         '<div class="EventList" id ="EventList' + id + '" style = "display: block" onclick="loadEvent(' + id + ')">' +
             '<div class = "EventListImage" style="background-image: url(' + url + ')"></div>' +
-            '<div class = "EvnetListRight">' +
+            '<div class = "EventListRight" style="">' +
                 '<div class = "EventListTitle">' + title + '</div>' +
                 '<div class = "EventListDate">' + date + '</div>' +
             '</div>' +
         '</div>';
-    Lobby.insertAdjacentHTML( 'beforeend', str );
+    Lobby.insertAdjacentHTML( 'beforeEnd', str );
 }
-
 
 
 function loadEvent(id){
@@ -23,8 +22,6 @@ function loadEvent(id){
     }
     document.getElementById('EventInfo').style.display = 'block';
 }
-
-
 
 function event_init() {
     var index_events;
@@ -40,7 +37,3 @@ function EventClass (id, date, url, title) {
     this.url = url;
     this.title = title;
 }
-
-
-
-

@@ -12,122 +12,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
     <style>
+        /* 배경 */
         html, body{
-            width: 98%;
-            height: 98%;
-            background-color: #ffffff;
-        }
-        .MainContent{
-            position: relative;
-            display: block;
-            background: #ffffff;
+            margin: 0;
+            width: 100%;
             height: 100%;
+            background-color: #232424;
         }
+        /* 메인배경 */
+        .wrapper {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #232424;
+        }
+        /* familyHub */
         .HeaderContent{
+            margin: 0;
+            top:0;
+            width: 100%;
+            height: 20%;
             position: relative;
+            background: #232424; /*#363E4B;*/
+            text-align: center;
             display: block;
-            background: #ffffff;
-            box-shadow: 0 1px 0px rgba(11,13,12, 0.2);
         }
-        .HeaderContent .logo{
-            padding: 5%;
+        .HeaderContent #logo{
+            left: 0;
+            margin-top: 5%;
+            height: 50%;
+            width: 100%;
+
+            background: #232424; /* #91b7f8;*/
             vertical-align: center;
             text-align: center;
         }
-        .LobbyContent {
-            height: 83%;
-            position: relative;
-            display: block;
+        .HeaderContent #logo a{
+            font-size: 28px;
+            font-weight: 800;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+            color: #F5F8FB;
         }
-        .MiddleContent{
-            position: relative;
-            display: block;
-            background: #ffffff;
-            margin: 3%;
-            width: 94%;
-            height: 60%;
-            text-align: center;
+        .HeaderContent span.Family{
+            font-weight: 400;
+        }
 
-            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
-            background-repeat:no-repeat;
-            background-size:cover;
-            transition: all 0.5s ease;
+
+        /* navigation bar */
+        .navbar {
+            width: 98%;
+            background-color: transparent;
+            height: 10%;
+            box-sizing: border-box;
+
+            text-align: center;
         }
-        .MiddleContent:hover{
-             opacity: 0.5;
+
+        .navbar .navtab {
+            display:inline-block;
+            height: 100%;
         }
-        .HeaderContent a{
-            color: #000000;
-            font-weight: bold;
-            font-family: Calibri;
-            font-size: 35px;
+
+        .navbar a {
+            padding: 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            vertical-align: center;
+            font-family: arial;
+            color: #F5F8FB;
         }
+
+        .navtab :hover {
+            border-bottom: 2px solid #F5F8FB;
+        }
+
+        .navbar .navtab .active{
+            border-bottom: 2px solid #F5F8FB;
+        }
+
+        @media screen and (max-width:680px) {
+            .navbar .responsive {position: relative;}
+            .navbar .responsive .navtab {
+                float: none;
+                display: inline;
+            }
+            .navbar.responsive .navtab a {
+                display: block;
+                text-align: left;
+            }
+        }
+
+        .LobbyContent{
+            margin: 0;
+            position: relative;
+            background-color: #232424; /*#f5f5f5;*/
+            display: block;
+            height: 85%;
+        }
+
         .FooterContent{
-            margin-top: 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            height: 40%
-        }
-        .MemoContent{
+            height: 5%;
             position: relative;
-            display: block;
-            background: #ffffff;
-            margin: 4% 1%;
-            width: 98%;
-            height: 48%;
-            text-align: center;
+            background-color: #d8d0d0;
+        }
 
-            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
-        }
-        .MemoContent:hover{
-            opacity: 0.5;
-        }
-        .MemoPicture{
-            float: left;
-            height: 100%;
-            background: url('./public/resource/memo.png');
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-        .MemoContent .MemoText{
-            float: right;
-            text-align: center;
-        }
-        .MemoContent .MemoText a{
-            font-weight: bold;
-            font-family: Calibri;
-            font-size: 35px;
-        }
-        .EventContent{
-            position: relative;
-            display: block;
-            background: #ffffff;
-            margin: 4% 1%;
-            width: 98%;
-            height: 48%;
-            text-align: center;
-
-            box-shadow: 0 2px 10px rgba(11,13,12, 0.2);
-        }
-        .EventContent:hover{
-            opacity: 0.5;
-        }
-        .EventPicture{
-            float: left;
-            height: 100%;
-            background: url('./public/resource/event.png');
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-        .EventContent .EventText{
-            float: right;
-            text-align: center;
-        }
-        .EventContent .EventText a{
-            font-weight: bold;
-            font-family: Calibri;
-            font-size: 35px;
-        }
+        /* 메모장 */
         .MemoCanvas{
             margin: 1%;
             margin-top: 3%;
@@ -137,159 +126,123 @@
         }
         .MemoBtnContainer{
             position: absolute;
-            top: 2%;
+            top: 12%;
             float: right;
             right: 2%;
             display: none;
         }
+
+        /* 메모추가,삭제 button */
         .but{
-            background-color: #4CAF50; /* Green */
-            border: none;
+            background-color: #e7426b;; /* Green #4CAF50 */
+            border-radius: 5px; border: 2px #232424;
             color: white;
             float: left;
             width: 50%;
-
-            padding: 15px 24px;
+            padding: 15px 20px;
             text-align: center;
             text-decoration: none;
             display: block;
             font-size: 16px;
         }
 
-        .EventList {
-            width: 100%;
-            height: 10%;
-            position: relative;
-            display: none;
-
-        }
-
-        .EventList .EventListImage{
-            float:left;
-            width: 20%;
-            height: 100%;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-        .EvnetListRight{
-            width: 80%;
-            height: 100%;
-            background-color: #bce8f1;
-            float: left;
-            text-align: center;
-            text-decoration: none;
-            font-size: 8px;
-        }
-        .EventList .EventListTitle{
-            height: 50%;
-        }
-        .EventList .EventListDate {
-            height: 50%;
-        }
-
-        .EventList:hover{
-            opacity: 0.7;
-        }
-
-
+        /* 행사 상세정보 */
         .EventInfo {
             display: none;
+            margin: 0;
+            top: 10%;
+            width: 100%;
         }
 
-        .EventInfo div{
-            line-height: 5;
-            font-size: 16px;
-            font-family: Raleway, sans-serif;
+        .eventhr {
+            border: 0;
+            height: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .EventInfo > .EventImage{
-            background : url('./public/resource/event_icon.jpg');
-            width : auto;
-            line-height: 10;
+        .EventInfo .EventImage{
+            background: url('./public/resource/event_icon.jpg');
+            height: 30%;
+            padding: 20px;
         }
 
-        .EventInfo > .EventTitle{
+        .EventInfo .EventTitle{
+            background: #f4f5f6;
             font-size: 20px;
             font-weight: 700;
             text-align: center;
-            margin:10px;
+            margin:0;
             padding:20px;
             font-family: 'Lato', sans-serif;
         }
 
-        .EventInfo > .EventDescription{
+        .EventInfo .EventDescription{
+            background: transparent;
+            height: 55%;
             font-size: 16px;
             font-family: Raleway, sans-serif;
             font-weight: 400;
-            background-color : #ccc;
+            background-color : #f4f5f6;
             padding:10px;
         }
 
-
+        .returnEventList {
+            float: right;
+        }
 
     </style>
+
     <title>Family Hub</title>
 </head>
 <body>
-    <div class="MainContent">
-        <div class="HeaderContent">
-            <div class="logo">
-                <a> Family Hub </a>
+<div id="wrapper" class="wrapper">
+
+        <div class="HeaderContent" id="HeaderContent">
+            <div id="logo"><a>Family Hub</a></div>
+
+            <div class="navbar" id="navbar"> <!-- <img src="/public/resource/event.png"> -->
+                    <div class="navtab" id = "CalendarContent" onclick="onclick_calendar()"><a>calendar</a></div>
+                    <div class="navtab" id = "MemoContent" onclick="onclick_memo()"><a>memo</a></div>
+                    <div class="navtab" id = "EventContent"  onclick="onclick_event()"><a>event</a></div>
             </div>
         </div>
-        <div class="LobbyContent" id="LobbyContent">
+        <div class="LobbyContent" id="LobbyContent"></div>
+        <div class="FooterContent" id="FooterContent"></div>
+</div>
 
-            <div class="MiddleContent"id ="MiddleContent">
+    <canvas class="MemoCanvas" id="MemoCanvas" >
 
-            </div>
-            <div class = "FooterContent" id ="FooterContent">
-                <div class="MemoContent" id = "MemoContent" onclick="onclick_memo()">
-                    <div class="MemoPicture" id = "MemoPicture">
-                    </div>
-                    <div class="MemoText" id = "MemoText">
-                        <a> Memo </a>
-                    </div>
-                </div>
-                <div class="EventContent" id = "EventContent"  onclick="onclick_event()">
-                    <div class="EventPicture" id = "EventPicture">
-                    </div>
-                    <div class="EventText" id = "EventText">
-                        <a> 행사 </a>
-                    </div>
-                </div>
-            </div>
-            <canvas class="MemoCanvas" id="MemoCanvas" >
-
-            </canvas>
-            <div class="MemoBtnContainer" id="MemoBtnContainer">
-                <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
-                <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
-            </div>
-
-
-            <div class="EventInfo" id="EventInfo">
-                <div class="returnEventList" id="returnEventList">
-                    <input class='backb' id='backb' type='button' value="<" onclick="return_event()">
-                </div>
-
-                <div class = "EventImage" id="EventImage">
-                    image
-                </div>
-                <div class = "EventTitle" id="EventTitle">
-                    this is the title
-                </div>
-                <div class = "EventDescription" id="EventDescription">
-                    description
-                </div>
-            </div>
-
-        </div>
+    </canvas>
+    <div class="MemoBtnContainer" id="MemoBtnContainer">
+        <input class='but' id='but1' type='button' value='메모 추가' onclick="AddMemo()">
+        <input class='but' id='but2' type='button' value='메모 삭제' onclick="DelMemo()">
     </div>
 
 
-    <script>
-        draw(); // ui resize
-    </script>
+    <div class="EventInfo" id="EventInfo">
+        <div class = "EventImage" id="EventImage">
+            image
+        </div>
+        <div class = "EventTitle" id="EventTitle">
+            this is the title
+        </div>
+        <hr class="eventhr">
+        <div class = "EventDescription" id="EventDescription">
+            <div class="eventDate"> Thursday, 17 Nov 2016 </div>
+            <div class="eventTime"> 00:00:00 </div>
+            <hr class="eventhr">
+            <div class="eventDetail"> SOSCON </div>
+        </div>
+        <div class="returnEventList" id="returnEventList">
+            <input class='backb' id='backb' type='button' value = "<" onclick="return_event()">
+        </div>
+    </div>
+</div>
+
+<script>
+    draw(); // ui resize
+</script>
 
 </body>
 </html>

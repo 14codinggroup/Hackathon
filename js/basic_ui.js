@@ -1,7 +1,15 @@
 
+
+function onclick_calendar(){
+    document.getElementById('HeaderContent').style.display = 'block';
+    document.getElementById('LobbyContent').style.display = 'none';
+    document.getElementById('FooterContent').style.display = 'none';
+}
+
 function onclick_memo(){
     //lobby ui --> memo ui
-    document.getElementById('MiddleContent').style.display = 'none';
+    document.getElementById('HeaderContent').style.display = 'block';
+    document.getElementById('LobbyContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
     document.getElementById('MemoCanvas').style.display = 'block';
     document.getElementById('MemoBtnContainer').style.display = 'block';
@@ -10,14 +18,16 @@ function onclick_memo(){
 
 function onclick_event(){
     //lobby ui --> event ui
-    document.getElementById('MiddleContent').style.display = 'none';
+    document.getElementById('HeaderContent').style.display = 'block';
+    document.getElementById('LobbyContent').style.display = 'none';
     document.getElementById('FooterContent').style.display = 'none';
     document.getElementById('EventInfo').style.display = 'none';
-    //document.getElementById('EventList').style.display = 'block';
     event_init();
 }
 
 function return_event(){
+    document.getElementById('HeaderContent').style.display = 'block';
+    document.getElementById('LobbyContent').style.display = 'none';
     document.getElementById('EventList').style.display = 'block';
     document.getElementById('EventInfo').style.display = 'none';
 }
@@ -40,4 +50,13 @@ function draw() {
     document.getElementById('EventText').style.width = (all - w) * 90 / 100 + "px";
     document.getElementById('EventText').style.height = w + "px";
     document.getElementById('EventText').style.paddingTop = (w / 2) * 20 / 100 + "px";
+}
+
+function myFunction() {
+    var x = document.getElementById("navbar");
+    if (x.className === "navbar") {
+        x.className += " responsive";
+    } else {
+        x.className = "navbar";
+    }
 }
