@@ -49,10 +49,14 @@ var eventSchema = mongoose.Schema({
     img: String,
     url: String
 });
+var tokenSchema = mongoose.Schema({
+    token: String
+});
+
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
 var Event = mongoose.model('Event_msg', eventSchema);
-
+var Token = mongoose.model('user', tokenSchema);
 
 /* Mongo Act */
 /* Mongo Memo */
@@ -160,32 +164,43 @@ app.get('/data/event', function(req, res){
     }
 });
 /* firebase */
-/*
+
+
+
+
+
 var FCM = require('fcm-node');
 
-var serverKey = '';
+var serverKey = 'AIzaSyDIG6zqCH8j82fpHjHfzqtniy2dXTkfHUg';
 var fcm = new FCM(serverKey);
+Token.find(function (err, tokens) {
+    if(err) console.log(err);
+    for (var i = 0; i < tokens.length; i ++){
+        var mytoken = tokens[i].token;
 
-var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-    to: 'registration_token',
-    collapse_key: ' AIzaSyBu6AGnzC4J8owbIFAhr7xkCyDkgPh8Nb0',
+        var message = {
+            to: mytoken, // required fill with device token or topics
+            
+            data: {
+                your_custom_data_key: 'your_custom_data_value'
+            },
+            notification: {
+                title: 'Title of your push notification',
+                body: 'Body of your push notification'
+            }
+        };
 
-    notification: {
-        title: 'Title of your push notification',
-        body: 'Body of your push notification'
-    },
+//callback style
+        fcm.send(message, function(err, response){
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Successfully sent with response: ", response);
+            }
+        });
 
-    data: {  //you can send only notification or only data(or include both)
-        my_key: 'my value',
-        my_another_key: 'my another value'
-    }
-};
-
-fcm.send(message, function(err, response){
-    if (err) {
-        console.log("Something has gone wrong!");
-    } else {
-        console.log("Successfully sent with response: ", response);
     }
 });
-*/
+
+
+
