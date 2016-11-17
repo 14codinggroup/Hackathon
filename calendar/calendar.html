@@ -10,10 +10,14 @@
     <script src="fullcalendar.js"></script>
     <script src="form.js"></script>
     <script>
+        (function () {
+            var savedEvents = LoadCalendar();
+            //LoadCalendar();
+            console.log(savedEvents);
+        }());
 
         $(document).ready(function () {
-            var savedEvents = LoadCalendar();
-            console.log(savedEvents);
+
 
             $('#calendar').fullCalendar({
                 customButtons: {
@@ -25,15 +29,13 @@
                     }
                 },
                 header: {
-                    left: 'prev,next today addScheduleButton',
+                    left: 'prev,next addScheduleButton',
                     center: 'title',
-                    right: 'month, agendaWeek, agendaDay'
                 },
 
                 editable: false,
                 eventLimit: true,
                 events: savedEvents,
-
 
                 eventClick: function (calEvent) {
                     console.log(calEvent);
