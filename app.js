@@ -42,8 +42,17 @@ var calendarSchema = mongoose.Schema({
     end: {type: String, default: ""},
     info: {type: String, default: ""}
 });
+var eventSchema = mongoose.Schema({
+    title: String,
+    start: String,
+    end: String,
+    info: String,
+    img: String,
+    url: String
+});
 var Memo = mongoose.model('Memo_msg', memoSchema);
 var Calendar = mongoose.model('Calendar_msg', calendarSchema);
+var Event = mongoose.model('Event_msg', memoSchema);
 
 
 /* Mongo Act */
@@ -122,7 +131,22 @@ app.get('/data/calendar', function(req, res){
             break;
     }
 });
-
+app.get('/data/event', function(req, res){
+    var client_obj = req.query;
+    switch (client_obj.msg) {
+        case "REQUEST_EVENT_ALL": // Semd All data of Memo
+            var eventdata = [];
+            Event.find(function (err, events) {
+                if(err) console.log(err);
+                for (var i = 0; i < events.length; i ++){
+                    eventdata.push(events[i].data);
+                }
+                var obj = { type: "MEMO", msg: 'RESPONSE_MEMO_ALL', data: eventdata };
+                res.send(JSON.stringify(obj));
+            });
+            break;
+    }
+});
 /* firebase */
 var gcm = require('node-gcm');
 var message = new gcm.Message();
