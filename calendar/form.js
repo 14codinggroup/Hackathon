@@ -53,7 +53,7 @@ function updateSchedule(oldEvent) {
         document.getElementById("title").focus();
         return false;
     }
-    
+
     UpdateCalendar(oldEvent, event);
     console.log('[UpdateSchedule]',event);
     alert("일정이 수정되었습니다.");
