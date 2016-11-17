@@ -20,6 +20,8 @@ function addSchedule() {
     }
 
     AddCalendar(event);
+    console.log('[AddSchedule]',event);
+
     alert("일정 '"+event['title']+"'가 일정에 추가되었습니다.");
     document.getElementById("start").value = null;
     document.getElementById("end").value = null;
@@ -29,6 +31,7 @@ function addSchedule() {
 
 function deleteSchedule(event) {
     DelCalendar(event);
+    console.log('[DeleteSchedule]',event);
     alert("일정 '"+event.title+"'가 삭제되었습니다.");
     return_index()
 }
@@ -52,13 +55,13 @@ function updateSchedule(oldEvent) {
     }
 
     UpdateCalendar(oldEvent, event);
+    console.log('[UpdateSchedule]',event);
     alert("일정이 수정되었습니다.");
     return_index()
 }
 
 function return_index() {
     window.location.href="calendar.html";
-    window.location.reload();
 }
 
 
@@ -85,7 +88,7 @@ function LoadCalendar() {
 function AddCalendar(event) {
     var client_json = {title: event['title'], start: event['start'],
                         end: event['end'], info: event['info']};
-    console.log(client_json);
+    console.log('[AddCalendar]',client_json);
     var requestMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDAR_ADD', data: client_json};
 
     $.get(dbLink, requestMsg, function (obj) {
@@ -96,10 +99,10 @@ function AddCalendar(event) {
 function DelCalendar(event) {
     var client_json = {title: event['title'], start: event['start'],
         end: event['end'], info: event['info']};
-    console.log(client_json);
+    console.log('[DelCalendar]',client_json);
     var requestMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDAR_DEL', data: client_json};
     $.get(dbLink, requestMsg, function (obj) {
-        console.log('Request AddEvent');
+        console.log('Request DelEvent');
     });
 }
 
@@ -112,7 +115,7 @@ function UpdateCalendar(oldEvent, updateInfo) {
     var sendData = {oldEvent: old, updateInfo: update};
     var requestMsg = {type:'CALENDAR', msg: 'REQUEST_CALENDAR_UPDATE', data: sendData};
     $.get(dbLink, requestMsg, function (obj) {
-        console.log('Request DeleteEvent');
+        console.log('Request UpdateEvent');
     });
 }
 
