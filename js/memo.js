@@ -102,9 +102,15 @@ var deleting;
 var delIndex;
 
 function mouseDownListener(evt) {
+    var touch = event.changedTouches[0];
     var blank = canvas.getBoundingClientRect();
-    var canvas_x = (evt.clientX - blank.left) * (canvas.width / blank.width);
-    var canvas_y = (evt.clientY - blank.top) * (canvas.height / blank.height);
+    var svgContainer = document.querySelector("#MemoCanvas");
+    //x = touch.pageX - svgContainer.offsetLeft - (customSize * 25);
+    //y = touch.pageY - svgContainer.offsetTop - (customSize * 25);
+    var canvas_x = touch.pageX - svgContainer.offsetLeft ;
+    //(evt.clientX - blank.left) * (canvas.width / blank.width);
+    var canvas_y = touch.pageY - svgContainer.offsetTop ;
+    //(evt.clientY - blank.top) * (canvas.height / blank.height);
     var index_memo;
 
     if (isDel == false) {
@@ -115,8 +121,8 @@ function mouseDownListener(evt) {
             }
         }
         if (dragging) {
-            window.addEventListener("mousemove", mouseMoveListener, false);
-            window.addEventListener("mouseup", mouseUpListener, false);
+            window.addEventListener("touchmove", mouseMoveListener, false);
+            window.addEventListener("touchend", mouseUpListener, false);
         }
     } else {
         for (index_memo = 0; index_memo < memo_array.length; index_memo++) {
@@ -144,15 +150,16 @@ function mouseDownListener(evt) {
 }
 
 function mouseMoveListener(evt) {
-    var blank = canvas.getBoundingClientRect();
-    var canvas_x = (evt.clientX - blank.left) * (canvas.width/blank.width);
-    var canvas_y = (evt.clientY - blank.top) * (canvas.height/blank.height);
+    var touch = event.changedTouches[0];
+    var svgContainer = document.querySelector("#MemoCanvas");
+    var canvas_x = touch.pageX - svgContainer.offsetLeft ;
+    var canvas_y = touch.pageY - svgContainer.offsetTop ;
     memo_array[dragIndex].x = canvas_x;
     memo_array[dragIndex].y = canvas_y;
 }
 function mouseUpListener(evt) {
-    window.removeEventListener("mousemove", mouseMoveListener, false);
-    window.removeEventListener("mouseup", mouseUpListener, false);
+    window.removeEventListener("touchmove", mouseMoveListener, false);
+    window.removeEventListener("touchend", mouseUpListener, false);
     dragging = false;
 }
 
