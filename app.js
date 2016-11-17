@@ -180,7 +180,7 @@ Token.find(function (err, tokens) {
 
         var message = {
             to: mytoken, // required fill with device token or topics
-            
+
             data: {
                 your_custom_data_key: 'your_custom_data_value'
             },
