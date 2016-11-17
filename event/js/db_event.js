@@ -36,7 +36,6 @@ function LoadEvent(){
             });
         });
 
-        console.log('[getEventList?]',eventList);
     }
     else {
         eventList = [
@@ -96,6 +95,5 @@ function setSlides() {
         elements += '</div>';
         console.log('['+i+']',eventList[i].title);
     }
-    console.log('[result]',elements);
     document.getElementById('wrapper').innerHTML = elements;
 }
