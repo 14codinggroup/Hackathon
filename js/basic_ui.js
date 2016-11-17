@@ -15,9 +15,10 @@ function onclick_memo(){
 }
 
 function onclick_event(){
+
     MoveOther();
-    //alert("A");
-    event_init();
+    LoadEvent();
+
 }
 
 function onclick_header(){
