@@ -1,6 +1,11 @@
-# TODO-LIST
+# HACKATHON END 16.10.28~16.11.18
 
-## 1. html,css design
-## 2. mobile push
-## 3. database
-## 4. calendar(?), Memo, Events
+## Nodejs
+
+## Mongo
+
+## Firebase
+
+## HTML CSS JS
+
+## FAMILY HUB
